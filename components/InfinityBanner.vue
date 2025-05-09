@@ -5,7 +5,13 @@
     </div>
 
     <Transition name="ready">
-      <div v-if="ready" class="flex animate-[infinityLoop_10s_linear_infinity]">
+      <div
+        v-if="ready"
+        class="c-infinity-banner__content"
+        :style="{
+          animationDuration: duration + 's',
+        }"
+      >
         <ul v-for="n in 2" class="flex flex-shrink-0">
           <li v-for="n in itemCount" class="flex-shrink-0">
             <slot />
@@ -17,23 +23,35 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  duration: {
+    type: Number,
+    default: 20,
+  },
+});
+
 const ready = ref(false);
 const component = ref();
 const placeholder = ref();
-
-const itemCount = ref(1);
+const duration = ref(props.duration);
+const itemCount = ref(0);
 
 onMounted(() => {
   const placeholderWidth = placeholder.value.getBoundingClientRect().width;
   const componentWidth = component.value.getBoundingClientRect().width;
-  itemCount.value = Math.ceil(componentWidth / placeholderWidth) + 1; // +1: Just to be sure it's wide enough
+  itemCount.value = Math.ceil(componentWidth / placeholderWidth);
+  duration.value = duration.value * (componentWidth / (placeholderWidth * itemCount.value)); // Adjust duration since the content will be wider than the component
   ready.value = true;
 });
 </script>
 
 <style lang="postcss">
 :where(.c-infinity-banner) {
-  @apply overflow-hidden;
+  @apply overflow-hidden flex;
+}
+:where(.c-infinity-banner__content) {
+  @apply flex flex-shrink-0;
+  animation: infinity 10s linear infinite;
 }
 
 .ready-enter-from,
@@ -46,7 +64,7 @@ onMounted(() => {
   @apply transition-all duration-150;
 }
 
-@keyframes infinityLoop {
+@keyframes infinity {
   to {
     transform: translateX(-50%);
   }

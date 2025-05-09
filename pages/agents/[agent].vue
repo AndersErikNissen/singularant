@@ -1,5 +1,5 @@
 <template>
-  <div class="p-agents-agent">
+  <div class="p-agent">
     <section
       class="relative flex items-center justify-center aspect-[16/9] max-h-[80vh] w-full overflow-hidden border-b border-brand-950"
       :style="{
@@ -26,7 +26,7 @@
         <div class="bg-brand-50 p-5 flex items-start gap-3">
           <NuxtImg
             :src="agent.displayIcon"
-            class="p-agents-agent__profile-img"
+            class="p-agent__profile-img"
             :style="{
               backgroundColor: `#${agent.backgroundGradientColors[0]}`,
             }"
@@ -63,7 +63,7 @@
                 active: showRoleDescription,
               }"
             >
-              What is {{ roleStartsWithAVowel ? "an" : "a" }} {{ agent.role.displayName }}?
+              What is {{ agent.role.displayName.match("^[aieouAIEOU].*") ? "an" : "a" }} {{ agent.role.displayName }}?
             </AButton>
             <div class="flex-auto bg-brand-50" />
           </div>
@@ -71,8 +71,8 @@
       </div>
     </section>
     <section class="px-5">
-      <div class="p-5 border-r border-l border-t border-brand-950">
-        <h2 class="text-4xl uppercase">Abilities</h2>
+      <div class="py-5 border-r border-l border-t border-brand-950">
+        <InfinityBanner><p class="text-4xl uppercase pr-16 italic">Abilities</p></InfinityBanner>
       </div>
       <div class="p-[1px] flex gap-[1px] bg-brand-950">
         <div class="bg-brand-50">
@@ -106,7 +106,6 @@
         </div>
       </div>
     </section>
-    <InfinityBanner>Some kind of text</InfinityBanner>
   </div>
 </template>
 
@@ -115,19 +114,23 @@ const route = useRoute();
 const agent = await useAgent(route.params.agent);
 
 const showRoleDescription = ref(false);
-const showData = ref(false);
-const roleStartsWithAVowel = agent.role.displayName.match("^[aieouAIEOU].*");
+
 const activeAbility = ref(agent.abilities[0].displayName);
 </script>
 
 <style lang="postcss">
-:where(.p-agents-agent) {
+:where(.p-agent) {
   @apply bg-brand-50;
 }
-.p-agents-agent__profile-img {
+
+.p-agent__profile-img {
   height: calc((1.125rem * 1.75) + 3rem * 0.75);
   @apply aspect-square mt-[6px] w-auto;
 }
+
+/**
+ * ANIMATIONS
+ */
 
 .role-description-enter-active,
 .role-description-leave-active,

@@ -7,7 +7,7 @@
       <section class="grid grid-cols-3 gap-[1px] -mt-[1px] p-[1px] pb-0 bg-brand-950">
         <NuxtLink
           :to="'agents/' + agent.uuid"
-          v-for="(agent, index) in agents"
+          v-for="(agent, key, index) in agents"
           :key="`agent-id-${index}`"
           class="aspect-[0.7/1] relative group overflow-hidden bg-gradient-to-b from-brand-500 to-brand-700 hover:rounded-3xl transition-all hover:duration-300"
         >
@@ -39,8 +39,7 @@
 </template>
 
 <script setup>
-const { data } = await useAsyncData("agents", () => $fetch("https://valorant-api.com/v1/agents"));
-const agents = data.value.data.filter((agent) => agent.isPlayableCharacter); // Fix: double Sova issue
+const agents = await useAgents();
 </script>
 
 <style lang="postcss"></style>

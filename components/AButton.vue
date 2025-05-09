@@ -17,7 +17,11 @@ defineProps({
 
 <style lang="postcss">
 .c-a-button {
-  @apply min-w-40 font-medium py-3 px-5 bg-brand-50 relative overflow-hidden  duration-300;
+  @apply inline-block min-w-40 font-medium py-3 px-5 bg-brand-50 relative overflow-hidden justify-center duration-300;
+}
+
+:where(.c-a-button__slot) {
+  @apply whitespace-nowrap;
 }
 
 .c-a-button.active,

@@ -107,15 +107,13 @@
       </div>
     </section>
     <InfinityBanner>Some kind of text</InfinityBanner>
-    <button class="py-2 px-4 border border-brand-500" @click="showData = !showData">Toggle data</button>
-    <pre v-if="showData">{{ agent }}</pre>
   </div>
 </template>
 
 <script setup>
 const route = useRoute();
-const { data } = await useFetch("https://valorant-api.com/v1/agents/" + route.params.agent);
-const agent = data.value.data;
+const agent = await useAgent(route.params.agent);
+
 const showRoleDescription = ref(false);
 const showData = ref(false);
 const roleStartsWithAVowel = agent.role.displayName.match("^[aieouAIEOU].*");
@@ -123,6 +121,9 @@ const activeAbility = ref(agent.abilities[0].displayName);
 </script>
 
 <style lang="postcss">
+:where(.p-agents-agent) {
+  @apply bg-brand-50;
+}
 .p-agents-agent__profile-img {
   height: calc((1.125rem * 1.75) + 3rem * 0.75);
   @apply aspect-square mt-[6px] w-auto;

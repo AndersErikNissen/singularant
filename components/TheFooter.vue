@@ -1,6 +1,6 @@
 <template>
-  <div class="c-the-footer">
-    <div class="border-l border-r border-brand-950 py-10 px-5 flex justify-between items-start gap-5">
+  <footer class="c-the-footer" :class="[colorClasses.body, colorClasses.bg]">
+    <div class="border-l border-r py-10 px-5 flex justify-between items-start gap-5 border-[currentColor]">
       <div class="max-w-[400px]">
         <p class="text-sm leading-5">
           A fun and personal project made and designed by
@@ -10,9 +10,9 @@
       </div>
       <TheNavigationMenu class="grid grid-cols-1 gap-1" />
     </div>
-    <div class="p-5 border-l border-r border-t border-brand-950 text-brand-500" ref="icon">
+    <div class="p-5 border-l border-r border-t border-[currentColor]" ref="icon">
       <svg
-        :class="{ visible: isVisible }"
+        :class="[colorClasses.logo]"
         class="c-the-footer__icon block w-full h-auto"
         width="92"
         height="15"
@@ -82,35 +82,35 @@
         />
       </svg>
     </div>
-    <p class="text-xs p-5 border-l border-r border-t border-brand-950">
+    <p class="text-xs p-5 border-l border-r border-t border-[currentColor]">
       Riot Games, Valorant, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
     </p>
-  </div>
+  </footer>
 </template>
 
 <script setup>
-const icon = useTemplateRef("icon");
-const isVisible = shallowRef(false);
-
-const obs = useIntersectionObserver(
-  icon,
-  ([entry]) => {
-    isVisible.value = entry?.isIntersecting || false;
+defineProps({
+  colorClasses: {
+    type: Object,
+    default: {
+      body: "text-brand-50",
+      bg: "bg-brand-500",
+      logo: "text-brand-900",
+    },
   },
-  { threshold: 0.1 }
-);
+});
 </script>
 
 <style lang="postcss">
 :where(.c-the-footer) {
-  @apply grid grid-cols-1 border-t border-b border-brand-950 px-5 -mt-[1px] bg-brand-50;
+  @apply grid grid-cols-1 border-t border-b px-5 -mt-[1px] sticky bottom-0 -z-10;
 }
 
-:where(.c-the-footer__icon:not(.visible) > path) {
+:where(.c-the-footer:not(.visible) .c-the-footer__icon > path) {
   @apply block -translate-y-full;
 }
 
-.visible > path {
+.visible .c-the-footer__icon > path {
   @apply transition-transform duration-1000;
 }
 </style>

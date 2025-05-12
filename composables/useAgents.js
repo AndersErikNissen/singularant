@@ -9,17 +9,7 @@ export const useAgents = async () => {
   } else {
     const { data: fetchedAgents } = await useFetch("https://valorant-api.com/v1/agents", {
       key: "agents",
-      transform: (data) => {
-        const updatedData = {};
-
-        data.data.forEach((agent) => {
-          if (agent.isPlayableCharacter) {
-            updatedData[agent.uuid] = agent;
-          }
-        });
-
-        return updatedData;
-      },
+      transform: (data) => data.data.filter((agent) => agent.isPlayableCharacter === true),
     });
 
     agents.value = fetchedAgents.value;

@@ -5,11 +5,16 @@
     </div>
     <slot />
     <div class="pointer-events-none absolute h-[57px] w-full" ref="trigger" />
-    <TheFooter :color-classes="colorClasses" :class="{ visible: isVisible }" />
+    <TheFooter
+      :colors="[tailwindColors.brand[950], tailwindColors.brand[50], tailwindColors.brand[500]]"
+      :class="{ visible: isVisible }"
+    />
   </main>
 </template>
 
 <script setup>
+import tailwindColors from "#tailwind-config/theme/colors";
+
 const trigger = ref();
 const isVisible = shallowRef(false);
 const colorClasses = {

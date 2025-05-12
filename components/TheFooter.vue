@@ -1,5 +1,11 @@
 <template>
-  <footer class="c-the-footer" :class="[colorClasses.body, colorClasses.bg]">
+  <footer
+    class="c-the-footer"
+    :style="{
+      color: color,
+      backgroundColor: bg,
+    }"
+  >
     <div class="border-l border-r py-10 px-5 flex justify-between items-start gap-5 border-[currentColor]">
       <div class="max-w-[400px]">
         <p class="text-sm leading-5">
@@ -12,7 +18,9 @@
     </div>
     <div class="p-5 border-l border-r border-t border-[currentColor]" ref="icon">
       <svg
-        :class="[colorClasses.logo]"
+        :style="{
+          color: cta,
+        }"
         class="c-the-footer__icon block w-full h-auto"
         width="92"
         height="15"
@@ -89,16 +97,16 @@
 </template>
 
 <script setup>
-defineProps({
-  colorClasses: {
-    type: Object,
-    default: {
-      body: "text-brand-50",
-      bg: "bg-brand-500",
-      logo: "text-brand-900",
-    },
+import tailwindColors from "#tailwind-config/theme/colors";
+
+const props = defineProps({
+  colors: {
+    type: Array,
+    default: [tailwindColors.brand[50], tailwindColors.brand[500], tailwindColors.brand[900]],
   },
 });
+
+const [color, bg, cta] = props.colors;
 </script>
 
 <style lang="postcss">
@@ -108,6 +116,10 @@ defineProps({
 
 :where(.c-the-footer:not(.visible) .c-the-footer__icon > path) {
   @apply block -translate-y-full;
+}
+
+.c-the-footer__icon {
+  color: var(--logo-color, inherit);
 }
 
 .visible .c-the-footer__icon > path {

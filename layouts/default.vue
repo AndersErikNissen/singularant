@@ -5,7 +5,7 @@
     </div>
     <slot />
     <div class="pointer-events-none absolute h-[57px] w-full" ref="trigger" />
-    <TheFooter :class="{ visible: isVisible }" />
+    <TheFooter :colors="$attrs['colors']" :class="{ visible: isVisible }" />
   </main>
 </template>
 

@@ -13,5 +13,6 @@ export default defineNuxtConfig({
   tailwindcss: {
     viewer: { endpoint: "/_tailwind", exportViewer: true },
     editorSupport: true,
+    exposeConfig: true,
   },
 });

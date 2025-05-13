@@ -13,7 +13,7 @@
         '#' + agent.backgroundGradientColors[1],
       ]"
     >
-      <div class="bg-brand-50" :style="{ color: '#' + agent.backgroundGradientColors[1] }">
+      <div class="bg-brand-50">
         <section
           class="relative flex items-center justify-center aspect-[16/9] max-h-[80vh] w-full overflow-hidden border-b border-[currentColor]"
           :style="{
@@ -168,30 +168,7 @@ const showRoleDescription = ref(false);
 const route = useRoute();
 const agents = await useAgents();
 const agent = agents.value.find((agent) => agent.uuid === route.params.agent);
-
-// MANGEL - otherAgents skal opdateres på hver load
-// MANGEL - otherAgents skal opdateres på hver load
-// MANGEL - otherAgents skal opdateres på hver load
-// MANGEL - otherAgents skal opdateres på hver load
-// MANGEL - otherAgents skal opdateres på hver load
-// MANGEL - otherAgents skal opdateres på hver load
-// MANGEL - otherAgents skal opdateres på hver load
-
-const otherAgents = useState("otherAgents", () => {
-  let pickedAgents = [];
-  let usedIndexes = [agents.value.findIndex((obj) => obj.uuid === agent.uuid)];
-
-  while (pickedAgents.length < 3) {
-    const randomIndex = Math.floor(Math.random() * (agents.value.length - 1));
-
-    if (!usedIndexes.includes(randomIndex)) {
-      pickedAgents.push(agents.value[randomIndex]);
-      usedIndexes.push(randomIndex);
-    }
-  }
-
-  return pickedAgents;
-});
+const otherAgents = await useOtherAgents().then((agents) => agents.value[route.params.agent]);
 
 const activeAbility = ref(agent.abilities[0].displayName);
 const abilityInheritBackground = ref(false);

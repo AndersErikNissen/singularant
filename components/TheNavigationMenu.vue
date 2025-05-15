@@ -16,6 +16,10 @@ const menuItems = [
     name: "Agents",
     path: "/agents",
   },
+  {
+    name: "Player",
+    path: "/player",
+  },
 ];
 </script>
 

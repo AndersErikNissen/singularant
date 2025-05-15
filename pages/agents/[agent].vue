@@ -15,29 +15,36 @@
     >
       <div class="bg-brand-50">
         <section
-          class="relative flex items-center justify-center aspect-[16/9] max-h-[80vh] w-full overflow-hidden border-b border-[currentColor]"
+          class="relative flex aspect-[16/9] max-h-[80vh] w-full items-center justify-center overflow-hidden border-b border-[currentColor]"
           :style="{
             background: `linear-gradient(180deg, transparent, #${agent.backgroundGradientColors[0]} 20%, #${agent.backgroundGradientColors[1]} 60%)`,
           }"
         >
           <div
-            class="bg-repeat bg-contain bg-center absolute size-full top-0 left-0"
+            class="absolute left-0 top-0 size-full bg-contain bg-center bg-repeat"
             :style="{
               'background-image': `url('${agent.background}')`,
             }"
           />
-          <NuxtImg :src="agent.fullPortrait" class="h-full w-auto absolute top-[15%] left-[50%] -translate-x-[50%]" />
+          <NuxtImg
+            :src="agent.fullPortrait"
+            class="absolute left-[50%] top-[15%] h-full w-auto -translate-x-[50%]"
+          />
           <div
-            class="absolute h-[50%] w-full bottom-0 opacity-90"
+            class="absolute bottom-0 h-[50%] w-full opacity-90"
             :style="{
               background: `linear-gradient(180deg, transparent, #${agent.backgroundGradientColors[3]})`,
             }"
           />
-          <div class="absolute top-0 left-5 right-5 h-full border-l border-r border-[currentColor] z-10" />
+          <div
+            class="absolute left-5 right-5 top-0 z-10 h-full border-l border-r border-[currentColor]"
+          />
         </section>
         <section class="px-5">
-          <div class="grid grid-cols-2 gap-[1px] bg-[currentColor] border-r border-l border-[currentColor]">
-            <div class="bg-brand-50 p-5 flex items-start gap-3">
+          <div
+            class="grid grid-cols-2 gap-[1px] border-l border-r border-[currentColor] bg-[currentColor]"
+          >
+            <div class="flex items-start gap-3 bg-brand-50 p-5">
               <NuxtImg
                 :src="agent.displayIcon"
                 class="p-agent__profile-img"
@@ -46,24 +53,26 @@
                 }"
               />
               <div class="flex-auto">
-                <p class="text-lg mb-1">{{ agent.role.displayName }}</p>
+                <p class="mb-1 text-lg">{{ agent.role.displayName }}</p>
                 <h1 class="text-5xl font-medium">{{ agent.displayName }}</h1>
               </div>
             </div>
             <div class="bg-brand-50">
-              <div class="overflow-hidden relative p-5">
+              <div class="relative overflow-hidden p-5">
                 <Transition name="role-description">
                   <div
                     v-if="showRoleDescription"
-                    class="absolute top-0 left-0 size-full p-5 flex items-center text-brand-50 z-[1]"
-                    :style="{ backgroundColor: `#${agent.backgroundGradientColors[1]}` }"
+                    class="absolute left-0 top-0 z-[1] flex size-full items-center p-5 text-brand-50"
+                    :style="{
+                      backgroundColor: `#${agent.backgroundGradientColors[1]}`,
+                    }"
                   >
                     <p class="">{{ agent.role.description }}</p>
                   </div>
                 </Transition>
                 <p class="">{{ agent.description }}</p>
               </div>
-              <div class="flex bg-[currentColor] pt-[1px] gap-[1px]">
+              <div class="flex gap-[1px] bg-[currentColor] pt-[1px]">
                 <AButton
                   @click="showRoleDescription = false"
                   class="c-a-button--inherit"
@@ -80,7 +89,10 @@
                     active: showRoleDescription,
                   }"
                 >
-                  What is {{ agent.role.displayName.match("^[aieouAIEOU].*") ? "an" : "a" }}
+                  What is
+                  {{
+                    agent.role.displayName.match("^[aieouAIEOU].*") ? "an" : "a"
+                  }}
                   {{ agent.role.displayName }}?
                 </AButton>
                 <div class="flex-auto bg-brand-50" />
@@ -89,12 +101,18 @@
           </div>
         </section>
         <section class="px-5">
-          <div class="py-5 border-r border-l border-t border-[currentColor]">
-            <InfinityBanner><p class="text-4xl uppercase pr-16 italic">Abilities</p></InfinityBanner>
+          <div class="border-l border-r border-t border-[currentColor] py-5">
+            <InfinityBanner
+              ><p class="pr-16 text-4xl uppercase italic">
+                Abilities
+              </p></InfinityBanner
+            >
           </div>
-          <div class="p-[1px] flex gap-[1px] bg-[currentColor]">
+          <div class="flex gap-[1px] bg-[currentColor] p-[1px]">
             <div class="bg-brand-50">
-              <div class="flex flex-col items-stretch gap-[1px] bg-[currentColor]">
+              <div
+                class="flex flex-col items-stretch gap-[1px] bg-[currentColor]"
+              >
                 <AButton
                   v-for="(ability, index) in agent.abilities"
                   :key="`ability-btn-id-${index}`"
@@ -108,7 +126,7 @@
                 </AButton>
               </div>
             </div>
-            <div class="flex-auto relative overflow-hidden w-full">
+            <div class="relative w-full flex-auto overflow-hidden">
               <Transition
                 v-for="(ability, index) in agent.abilities"
                 :key="`ability-description-id-${index}`"
@@ -116,19 +134,27 @@
               >
                 <div
                   v-if="activeAbility === ability.displayName"
-                  class="flex gap-4 size-full p-5 bg-[currentColor]"
+                  class="flex size-full gap-4 bg-[currentColor] p-5"
                   :class="{
                     'bg-brand-50': !abilityInheritBackground,
                   }"
                 >
                   <div
-                    class="p-2 size-14 flex items-center justify-center aspect-square mt-[6px]"
+                    class="mt-[6px] flex aspect-square size-14 items-center justify-center p-2"
                     :style="{
                       backgroundColor: `#${agent.backgroundGradientColors[2]}`,
                     }"
                   >
-                    <NuxtImg v-if="!!ability.displayIcon" :src="ability.displayIcon" class="size-full" />
-                    <span v-else class="text-[10px] font-bold uppercase text-brand-50">Passive</span>
+                    <NuxtImg
+                      v-if="!!ability.displayIcon"
+                      :src="ability.displayIcon"
+                      class="size-full"
+                    />
+                    <span
+                      v-else
+                      class="text-[10px] font-bold uppercase text-brand-50"
+                      >Passive</span
+                    >
                   </div>
                   <p
                     class="text-lg"
@@ -144,12 +170,16 @@
           </div>
         </section>
         <section class="px-5">
-          <div class="border-r border-l border-[currentColor]">
+          <div class="border-l border-r border-[currentColor]">
             <div class="p-5">
               <h3 class="text-4xl uppercase">Other agents</h3>
             </div>
             <div class="grid grid-cols-3 gap-[1px] bg-[currentColor]">
-              <AgentCard v-for="(agent, index) in otherAgents" :key="index" :agent="agent" />
+              <AgentCard
+                v-for="(agent, index) in otherAgents"
+                :key="index"
+                :agent="agent"
+              />
             </div>
           </div>
         </section>
@@ -168,7 +198,9 @@ const showRoleDescription = ref(false);
 const route = useRoute();
 const agents = await useAgents();
 const agent = agents.value.find((agent) => agent.uuid === route.params.agent);
-const otherAgents = await useOtherAgents().then((agents) => agents.value[route.params.agent]);
+const otherAgents = await useOtherAgents().then(
+  (agents) => agents.value[route.params.agent],
+);
 
 const activeAbility = ref(agent.abilities[0].displayName);
 const abilityInheritBackground = ref(false);
@@ -180,7 +212,7 @@ watch(activeAbility, () => {
 <style lang="postcss">
 .p-agent__profile-img {
   height: calc((1.125rem * 1.75) + 3rem * 0.75);
-  @apply aspect-square mt-[6px] w-auto;
+  @apply mt-[6px] aspect-square w-auto;
 }
 
 /**
@@ -191,7 +223,7 @@ watch(activeAbility, () => {
 .role-description-leave-active,
 .role-description-enter-active + p,
 .role-description-leave-active + p {
-  @apply duration-500 transition-transform;
+  @apply transition-transform duration-500;
 }
 
 .role-description-enter-from,
@@ -206,7 +238,7 @@ watch(activeAbility, () => {
 
 .ability-description-enter-active,
 .ability-description-leave-active {
-  @apply duration-700 transition-all absolute;
+  @apply absolute transition-all duration-700;
 }
 
 .ability-description-enter-from {
@@ -224,6 +256,6 @@ watch(activeAbility, () => {
 }
 
 .ability-description-leave-to {
-  @apply translate-y-4 absolute top-0 left-0;
+  @apply absolute left-0 top-0 translate-y-4;
 }
 </style>

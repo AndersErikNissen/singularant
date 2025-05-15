@@ -1,10 +1,16 @@
 <template>
-  <header class="the-header w-full border-t border-b px-5 border-[currentColor]">
-    <div class="w-full flex justify-between items-stretch border -my-[1px] border-[currentColor]">
-      <NuxtLink class="p-5 border-r border-[currentColor]" to="/">
+  <header
+    class="the-header w-full border-b border-t border-[currentColor] px-5"
+  >
+    <div
+      class="-my-[1px] flex w-full items-stretch justify-between border border-[currentColor]"
+    >
+      <NuxtLink class="border-r border-[currentColor] p-5" to="/">
         <BrandLogo />
       </NuxtLink>
-      <TheNavigationMenu class="flex text-lg text-light items-stretch border-l border-[currentColor]" />
+      <TheNavigationMenu
+        class="text-light flex items-stretch border-l border-[currentColor] text-lg"
+      />
     </div>
   </header>
 </template>
@@ -14,7 +20,7 @@
 <style lang="postcss">
 :where(.the-header .c-the-navigation-menu) {
   & li {
-    @apply p-5 flex items-center;
+    @apply flex items-center p-5;
   }
 
   & > li:not(:first-child) {

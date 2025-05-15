@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="sticky top-0 z-50 bg-brand-50 -mb-[1px]">
+    <div class="sticky top-0 z-50 -mb-[1px] bg-brand-50">
       <TheHeader />
     </div>
     <slot />
@@ -18,7 +18,7 @@ const obs = useIntersectionObserver(
   ([entry]) => {
     isVisible.value = entry?.isIntersecting || false;
   },
-  { threshold: 1 }
+  { threshold: 1 },
 );
 </script>
 

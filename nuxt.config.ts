@@ -5,7 +5,12 @@ export default defineNuxtConfig({
     // layoutTransition: {
     //   name: "layout",
     //   mode: "out-in",
-    //   duration: 1500,
+    //   duration: 1000,
+    // },
+    // pageTransition: {
+    //   name: "page",
+    //   mode: "out-in",
+    //   duration: 1000,
     // },
   },
   devtools: { enabled: true },

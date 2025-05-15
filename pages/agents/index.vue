@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-const agents = await useAgents();
+const { data: agents } = await useFetch("/api/agents");
 </script>
 
 <style lang="postcss"></style>

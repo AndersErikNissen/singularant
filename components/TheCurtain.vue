@@ -38,6 +38,9 @@
   @apply transition-all duration-500;
 }
 
+body:has(.page-enter-active) .c-the-curtain {
+}
+
 .layout-enter-active .c-the-curtain > div,
 .layout-leave-active .c-the-curtain > div,
 .page-enter-active .c-the-curtain > div,

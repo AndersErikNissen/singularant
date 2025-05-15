@@ -2,16 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   app: {
-    // layoutTransition: {
-    //   name: "layout",
-    //   mode: "out-in",
-    //   duration: 1000,
-    // },
-    // pageTransition: {
-    //   name: "page",
-    //   mode: "out-in",
-    //   duration: 1000,
-    // },
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+      duration: 1000,
+    },
   },
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@vueuse/nuxt"],

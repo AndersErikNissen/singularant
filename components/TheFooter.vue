@@ -6,22 +6,30 @@
       backgroundColor: bg,
     }"
   >
-    <div class="border-l border-r py-10 px-5 flex justify-between items-start gap-5 border-[currentColor]">
+    <div
+      class="flex items-start justify-between gap-5 border-l border-r border-[currentColor] px-5 py-10"
+    >
       <div class="max-w-[400px]">
         <p class="text-sm leading-5">
           A fun and personal project made and designed by
-          <NuxtLink class="underline-offset-2 underline" to="https://aenders.dk">AENDERS</NuxtLink> using the
-          non-official Valorant-API, and is not endorsed by Riot Games in any way.
+          <NuxtLink class="underline underline-offset-2" to="https://aenders.dk"
+            >AENDERS</NuxtLink
+          >
+          using the non-official Valorant-API, and is not endorsed by Riot Games
+          in any way.
         </p>
       </div>
       <TheNavigationMenu class="grid grid-cols-1 gap-1" />
     </div>
-    <div class="p-5 border-l border-r border-t border-[currentColor]" ref="icon">
+    <div
+      class="border-l border-r border-t border-[currentColor] p-5"
+      ref="icon"
+    >
       <svg
         :style="{
           color: cta,
         }"
-        class="c-the-footer__icon block w-full h-auto"
+        class="c-the-footer__icon block h-auto w-full"
         width="92"
         height="15"
         viewBox="0 0 92 15"
@@ -34,7 +42,11 @@
           class="delay-[50ms]"
         />
 
-        <path d="M11.9434 14.1113H9.6582V0.166016H11.9434V14.1113Z" fill="currentColor" class="delay-[100ms]" />
+        <path
+          d="M11.9434 14.1113H9.6582V0.166016H11.9434V14.1113Z"
+          fill="currentColor"
+          class="delay-[100ms]"
+        />
 
         <path
           d="M18.252 4.60938L19.6191 12.041H20.1562L19.7363 5.95703L19.5703 0.166016H21.7871V14.1113H18.1152L16.9141 9.46289L15.8008 2.22656H15.2441L15.625 8.7793L15.8105 14.1113H13.5938V0.166016H17.1191L18.252 4.60938Z"
@@ -90,8 +102,9 @@
         />
       </svg>
     </div>
-    <p class="text-xs p-5 border-l border-r border-t border-[currentColor]">
-      Riot Games, Valorant, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+    <p class="border-l border-r border-t border-[currentColor] p-5 text-xs">
+      Riot Games, Valorant, and all associated properties are trademarks or
+      registered trademarks of Riot Games, Inc.
     </p>
   </footer>
 </template>
@@ -102,7 +115,11 @@ import tailwindColors from "#tailwind-config/theme/colors";
 const props = defineProps({
   colors: {
     type: Array,
-    default: [tailwindColors.brand[50], tailwindColors.brand[500], tailwindColors.brand[900]],
+    default: [
+      tailwindColors.brand[50],
+      tailwindColors.brand[500],
+      tailwindColors.brand[900],
+    ],
   },
 });
 
@@ -111,7 +128,7 @@ const [color, bg, cta] = props.colors;
 
 <style lang="postcss">
 :where(.c-the-footer) {
-  @apply grid grid-cols-1 border-t border-b px-5 -mt-[1px] sticky bottom-0 -z-10;
+  @apply sticky bottom-0 -z-10 -mt-[1px] grid grid-cols-1 border-b border-t px-5;
 }
 
 :where(.c-the-footer:not(.visible) .c-the-footer__icon > path) {

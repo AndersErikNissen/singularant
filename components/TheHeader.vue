@@ -1,6 +1,7 @@
 <template>
   <header
-    class="the-header w-full border-b border-t border-[currentColor] px-5"
+    class="the-header"
+    :class="{ 'fixed bg-[transparent] text-brand-50': route.fullPath === '/' }"
   >
     <div
       class="-my-[1px] flex w-full items-stretch justify-between border border-[currentColor]"
@@ -15,16 +16,22 @@
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+const route = useRoute();
+</script>
 
 <style lang="postcss">
-:where(.the-header .c-the-navigation-menu) {
-  & li {
-    @apply flex items-center p-5;
-  }
+:where(.the-header) {
+  @apply sticky left-0 top-0 z-50 -mb-[1px] w-full border-b border-t border-[currentColor] bg-brand-50 px-5;
 
-  & > li:not(:first-child) {
-    @apply border-l border-[currentColor];
+  & .c-the-navigation-menu {
+    & li {
+      @apply flex items-center p-5;
+    }
+
+    & > li:not(:first-child) {
+      @apply border-l border-[currentColor];
+    }
   }
 }
 </style>

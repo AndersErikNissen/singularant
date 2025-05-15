@@ -1,5 +1,6 @@
 <template>
-  <div
+  <pre>{{ agent }}</pre>
+  <!-- <div
     class="p-agent"
     :style="{
       color: `#${agent.backgroundGradientColors[1]}`,
@@ -176,7 +177,7 @@
             </div>
             <div class="grid grid-cols-3 gap-[1px] bg-[currentColor]">
               <AgentCard
-                v-for="(agent, index) in otherAgents"
+                v-for="(agent, index) in agent.otherAgents"
                 :key="index"
                 :agent="agent"
               />
@@ -185,21 +186,15 @@
         </section>
       </div>
     </NuxtLayout>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
-definePageMeta({
-  layout: false,
-});
-
 const showRoleDescription = ref(false);
 
 const route = useRoute();
-const agents = await useAgents();
-const agent = agents.value.find((agent) => agent.uuid === route.params.agent);
-const otherAgents = await useOtherAgents().then(
-  (agents) => agents.value[route.params.agent],
+const { data: agent } = await useFetch(
+  "/api/agents?uuid=" + route.params.agent,
 );
 
 const activeAbility = ref(agent.abilities[0].displayName);

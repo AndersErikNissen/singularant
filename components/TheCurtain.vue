@@ -16,50 +16,41 @@
   @apply fixed left-0 top-0 z-50 hidden size-full items-center justify-center overflow-hidden bg-brand-200 p-5 text-brand-800;
 }
 
-.layout-enter-from .c-the-curtain,
-.layout-enter-to .c-the-curtain,
-.layout-leave-from .c-the-curtain,
-.layout-leave-to .c-the-curtain,
-.layout-enter-active .c-the-curtain,
-.layout-leave-active .c-the-curtain,
-.page-enter-from .c-the-curtain,
-.page-enter-to .c-the-curtain,
-.page-leave-from .c-the-curtain,
-.page-leave-to .c-the-curtain,
-.page-enter-active .c-the-curtain,
-.page-leave-active .c-the-curtain {
+/** Simple solution:
+  body:has(.page-leave-from) #app > *:not(.c-the-curtain),
+  body:has(.page-leave-to) #app > *:not(.c-the-curtain) {
+    @apply hidden;
+  }
+ */
+
+body:has(.page-enter-from) .c-the-curtain,
+body:has(.page-enter-to) .c-the-curtain,
+body:has(.page-leave-from) .c-the-curtain,
+body:has(.page-leave-to) .c-the-curtain,
+body:has(.page-enter-active) .c-the-curtain,
+body:has(.page-leave-active) .c-the-curtain {
   @apply flex;
 }
 
-.layout-enter-active .c-the-curtain,
-.layout-leave-active .c-the-curtain,
-.page-enter-active .c-the-curtain,
-.page-leave-active .c-the-curtain {
+body:has(.page-enter-active) .c-the-curtain,
+body:has(.page-leave-active) .c-the-curtain {
   @apply transition-all duration-500;
 }
 
-body:has(.page-enter-active) .c-the-curtain {
-}
-
-.layout-enter-active .c-the-curtain > div,
-.layout-leave-active .c-the-curtain > div,
-.page-enter-active .c-the-curtain > div,
-.page-leave-active .c-the-curtain > div {
+body:has(.page-enter-active) .c-the-curtain > div,
+body:has(.page-leave-active) .c-the-curtain > div {
   @apply transition-all duration-1000;
 }
 
-.layout-leave-from .c-the-curtain,
-.page-leave-from .c-the-curtain {
+body:has(.page-leave-from) .c-the-curtain {
   @apply translate-y-full;
 }
 
-.layout-leave-from .c-the-curtain > div,
-.page-leave-from .c-the-curtain > div {
+body:has(.page-leave-from) .c-the-curtain > div {
   @apply translate-y-full;
 }
 
-.layout-enter-to .c-the-curtain,
-.page-enter-to .c-the-curtain {
+body:has(.page-enter-to) .c-the-curtain {
   @apply -translate-y-full;
 }
 </style>

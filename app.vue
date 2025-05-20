@@ -1,5 +1,10 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    :style="{
+      color: colors.body,
+    }"
+  >
     <TheHeader />
     <main>
       <NuxtPage />
@@ -11,7 +16,7 @@
 </template>
 
 <script setup>
-import tailwindColors from "#tailwind-config/theme/colors";
+const colors = useColors();
 
 const trigger = ref();
 const isVisible = shallowRef(false);

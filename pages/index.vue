@@ -14,7 +14,7 @@
       </div>
     </section>
     <div class="absolute left-0 top-0 size-full overflow-hidden bg-brand-500">
-      <NuxtImg
+      <img
         class="size-full object-cover"
         src="/media/FFA_Deathmatch_Desktop.jpg"
       />

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-body text-brand-950 leading-6 bg-brand-50;
+  @apply bg-brand-50 font-body leading-6 text-brand-950;
 }
 
 h1,
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply uppercase font-light leading-5;
+  @apply font-light uppercase leading-5;
 }
 
 h1::selection,
@@ -30,4 +30,15 @@ a::selection {
 
 a {
   @apply cursor-pointer;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

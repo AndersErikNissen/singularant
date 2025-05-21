@@ -84,70 +84,74 @@
         </div>
       </div>
     </section>
-    <section class="px-5">
-      <div class="border-l border-r border-t border-[currentColor] py-5">
+    <section class="">
+      <div class="-mb-[1px] border-y border-[currentColor] py-5">
         <InfinityBanner
           ><p class="pr-16 text-4xl uppercase italic">
             Abilities
           </p></InfinityBanner
         >
       </div>
-      <div class="flex gap-[1px] bg-[currentColor] p-[1px]">
-        <div class="bg-brand-50">
-          <div class="flex flex-col items-stretch gap-[1px] bg-[currentColor]">
-            <AButton
-              v-for="(ability, index) in agent.abilities"
-              :key="`ability-btn-id-${index}`"
-              @click="activeAbility = ability.displayName"
-              class="c-a-button--inherit"
-              :class="{
-                active: activeAbility === ability.displayName,
-              }"
-            >
-              {{ ability.displayName }}
-            </AButton>
-          </div>
-        </div>
-        <div class="relative w-full flex-auto overflow-hidden">
-          <Transition
-            v-for="(ability, index) in agent.abilities"
-            :key="`ability-description-id-${index}`"
-            name="ability-description"
-          >
+      <div class="px-5">
+        <div class="flex gap-[1px] bg-[currentColor] p-[1px]">
+          <div class="bg-brand-50">
             <div
-              v-if="activeAbility === ability.displayName"
-              class="flex size-full gap-4 bg-[currentColor] p-5"
-              :class="{
-                'bg-brand-50': !abilityInheritBackground,
-              }"
+              class="flex flex-col items-stretch gap-[1px] bg-[currentColor]"
+            >
+              <AButton
+                v-for="(ability, index) in agent.abilities"
+                :key="`ability-btn-id-${index}`"
+                @click="activeAbility = ability.displayName"
+                class="c-a-button--inherit"
+                :class="{
+                  active: activeAbility === ability.displayName,
+                }"
+              >
+                {{ ability.displayName }}
+              </AButton>
+            </div>
+          </div>
+          <div class="relative w-full flex-auto overflow-hidden">
+            <Transition
+              v-for="(ability, index) in agent.abilities"
+              :key="`ability-description-id-${index}`"
+              name="ability-description"
             >
               <div
-                class="mt-[6px] flex aspect-square size-14 items-center justify-center p-2"
-                :style="{
-                  backgroundColor: `#${agent.backgroundGradientColors[2]}`,
-                }"
-              >
-                <NuxtImg
-                  v-if="!!ability.displayIcon"
-                  :src="ability.displayIcon"
-                  class="size-full"
-                />
-                <span
-                  v-else
-                  class="text-[10px] font-bold uppercase text-brand-50"
-                  >Passive</span
-                >
-              </div>
-              <p
-                class="text-lg"
+                v-if="activeAbility === ability.displayName"
+                class="flex size-full gap-4 bg-[currentColor] p-5"
                 :class="{
-                  'text-brand-50': abilityInheritBackground,
+                  'bg-brand-50': !abilityInheritBackground,
                 }"
               >
-                {{ ability.description }}
-              </p>
-            </div>
-          </Transition>
+                <div
+                  class="mt-[6px] flex aspect-square size-14 items-center justify-center p-2"
+                  :style="{
+                    backgroundColor: `#${agent.backgroundGradientColors[2]}`,
+                  }"
+                >
+                  <NuxtImg
+                    v-if="!!ability.displayIcon"
+                    :src="ability.displayIcon"
+                    class="size-full"
+                  />
+                  <span
+                    v-else
+                    class="text-[10px] font-bold uppercase text-brand-50"
+                    >Passive</span
+                  >
+                </div>
+                <p
+                  class="text-lg"
+                  :class="{
+                    'text-brand-50': abilityInheritBackground,
+                  }"
+                >
+                  {{ ability.description }}
+                </p>
+              </div>
+            </Transition>
+          </div>
         </div>
       </div>
     </section>
@@ -156,7 +160,7 @@
         <div class="p-5">
           <h3 class="text-4xl uppercase">Other agents</h3>
         </div>
-        <div class="grid grid-cols-3 gap-[1px] bg-[currentColor]">
+        <div class="grid grid-cols-3 gap-[1px] bg-[currentColor] py-[1px]">
           <AgentCard
             v-for="(agent, index) in adjacentAgents"
             :key="index"

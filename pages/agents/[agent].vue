@@ -93,66 +93,42 @@
         >
       </div>
       <div class="px-5">
-        <div class="flex gap-[1px] bg-[currentColor] p-[1px]">
-          <div class="bg-brand-50">
+        <ContentSwapper :items="agent.abilities">
+          <template #item="{ item, swap }">
             <div
-              class="flex flex-col items-stretch gap-[1px] bg-[currentColor]"
-            >
-              <AButton
-                v-for="(ability, index) in agent.abilities"
-                :key="`ability-btn-id-${index}`"
-                @click="activeAbility = ability.displayName"
-                class="c-a-button--inherit"
-                :class="{
-                  active: activeAbility === ability.displayName,
-                }"
-              >
-                {{ ability.displayName }}
-              </AButton>
-            </div>
-          </div>
-          <div class="relative w-full flex-auto overflow-hidden">
-            <Transition
-              v-for="(ability, index) in agent.abilities"
-              :key="`ability-description-id-${index}`"
-              name="ability-description"
+              class="flex size-full gap-4 bg-[currentColor] p-5"
+              :class="{
+                'bg-brand-50': !swap,
+              }"
             >
               <div
-                v-if="activeAbility === ability.displayName"
-                class="flex size-full gap-4 bg-[currentColor] p-5"
-                :class="{
-                  'bg-brand-50': !abilityInheritBackground,
+                class="mt-[6px] flex aspect-square size-14 items-center justify-center p-2"
+                :style="{
+                  backgroundColor: `#${agent.backgroundGradientColors[2]}`,
                 }"
               >
-                <div
-                  class="mt-[6px] flex aspect-square size-14 items-center justify-center p-2"
-                  :style="{
-                    backgroundColor: `#${agent.backgroundGradientColors[2]}`,
-                  }"
+                <NuxtImg
+                  v-if="!!item.displayIcon"
+                  :src="item.displayIcon"
+                  class="size-full"
+                />
+                <span
+                  v-else
+                  class="text-[10px] font-bold uppercase text-brand-50"
+                  >Passive</span
                 >
-                  <NuxtImg
-                    v-if="!!ability.displayIcon"
-                    :src="ability.displayIcon"
-                    class="size-full"
-                  />
-                  <span
-                    v-else
-                    class="text-[10px] font-bold uppercase text-brand-50"
-                    >Passive</span
-                  >
-                </div>
-                <p
-                  class="text-lg"
-                  :class="{
-                    'text-brand-50': abilityInheritBackground,
-                  }"
-                >
-                  {{ ability.description }}
-                </p>
               </div>
-            </Transition>
-          </div>
-        </div>
+              <p
+                class="text-lg"
+                :class="{
+                  'text-brand-50': swap,
+                }"
+              >
+                {{ item.description }}
+              </p>
+            </div>
+          </template>
+        </ContentSwapper>
       </div>
     </section>
     <section class="px-5">

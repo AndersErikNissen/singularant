@@ -19,17 +19,31 @@ export default defineEventHandler(async (event) => {
     );
 
     bundles.forEach((bundle) => {
-      bundle.weapons = weapons.filter((weapon) =>
+      bundle.items = [];
+
+      const matchingWeapons = weapons.filter((weapon) =>
         weapon.displayName.includes(bundle.displayName),
       );
 
-      bundle.buddies = buddies.filter((buddie) =>
+      if (matchingWeapons.length > 0) {
+        bundle.items.push({ displayName: "weapons", items: matchingWeapons });
+      }
+
+      const matchingBuddies = buddies.filter((buddie) =>
         buddie.displayName.includes(bundle.displayName),
       );
 
-      bundle.sprays = sprays.filter((spray) =>
+      if (matchingBuddies.length > 0) {
+        bundle.items.push({ displayName: "buddies", items: matchingBuddies });
+      }
+
+      const matchingSprays = sprays.filter((spray) =>
         spray.displayName.includes(bundle.displayName),
       );
+
+      if (matchingSprays.length > 0) {
+        bundle.items.push({ displayName: "sprays", items: matchingSprays });
+      }
     });
 
     skins = {

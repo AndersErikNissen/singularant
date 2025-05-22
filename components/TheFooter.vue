@@ -110,7 +110,6 @@
 
 <script setup>
 const colors = useColors();
-console.log("🎉", colors.value);
 </script>
 
 <style lang="postcss">

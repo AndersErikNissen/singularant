@@ -1,85 +1,65 @@
 <template>
   <div class="p-bundle">
-    <section class="px-5">
-      <div
-        class="border-x border-b border-brand-950 p-5 text-sm text-brand-700"
-      >
-        <ul class="flex items-center gap-2">
-          <li>
-            <NuxtLink
-              class="underline underline-offset-2 duration-300 hover:text-brand-950"
-              to="/skins"
-              >SKINS</NuxtLink
-            >
-          </li>
-          <li>/</li>
-          <li>
-            <NuxtLink
-              class="underline underline-offset-2 duration-300 hover:text-brand-950"
-              to="/skins/bundles"
-              >BUNDLES</NuxtLink
-            >
-          </li>
-          <li>/</li>
-          <li>
-            <p class="uppercase">{{ bundle.displayName }}</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="px-5">
-      <div class="border-x border-brand-950 p-5">
-        <h1 class="text-4xl uppercase">{{ bundle.displayName }}</h1>
-      </div>
-    </section>
+    <PageHeader class="-mt-[1px]" :crumbs="['skins', 'bundles']">
+      {{ bundle.displayName }}
+    </PageHeader>
     <section class="p-bundle__banner">
-      <div class="group col-span-3 overflow-hidden">
-        <img
-          class="size-full object-cover duration-300 group-hover:scale-105"
-          :src="bundle.displayIcon ?? bundle.displayIcon2"
-        />
-      </div>
-      <div class="group overflow-hidden">
-        <img
-          class="size-full object-cover duration-300 group-hover:scale-105"
-          :src="bundle.verticalPromoImage ?? bundle.displayIcon"
-        />
-      </div>
+      <img
+        class="size-full object-cover duration-300 group-hover:scale-105"
+        :src="bundle.displayIcon ?? bundle.displayIcon2"
+      />
     </section>
-    <section class="w-full">
-      <InfinityBanner class="py-5"
-        ><span class="pr-16 text-4xl uppercase italic"
-          >INCLUDES</span
-        ></InfinityBanner
+    <section
+      v-for="(item, index) in bundle.items"
+      :key="`bundle-items-section-${index}-${item.displayName}`"
+      class="-mb-[1px] border-t border-brand-950"
+    >
+      <InfinityBanner class="border-b border-brand-950 py-5"
+        ><span class="pr-16 text-2xl uppercase italic">{{
+          item.displayName.slice(0, -1) + "(s)"
+        }}</span></InfinityBanner
       >
-    </section>
-    <section>
-      <ContentSwapper :items="bundle.items">
-        <template #item="{ item, swap }">
-          <div class="flex flex-wrap gap-[1px]">
-            <div
-              v-for="childItem in item.items"
-              class="flex-[0_0_calc((100%_-_5px)_/_4)]"
+      <div class="px-5">
+        <div class="grid grid-cols-4 pl-[1px]">
+          <template
+            v-for="(childItem, index) in item.items"
+            :key="`${childItem.uuid}-${index}`"
+          >
+            <CardSkin
+              :skin="childItem"
+              class="-ml-[1px] -mt-[1px] bg-brand-950 p-[1px]"
             >
-              <div class="flex size-full flex-col gap-[1px] bg-brand-950">
-                <div
-                  class="relative flex flex-auto items-center justify-center bg-brand-50 p-5"
-                >
-                  <img
-                    class="absolute left-0 top-0 size-full object-cover"
-                    v-if="childItem.wallpaper"
-                    :src="childItem.wallpaper"
-                  />
-                  <img class="relative" :src="childItem.displayIcon" />
-                </div>
-                <div class="flex-shrink-0 bg-brand-50 p-2">
-                  <p>{{ childItem.displayName }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-      </ContentSwapper>
+              <template #image="{ src }">
+                <img
+                  :src="src"
+                  class="object-contain duration-300 group-hover:scale-105"
+                  :class="{
+                    'max-h-[23%]': item.displayName === 'weapons',
+                    'max-h-full': item.displayName !== 'weapons',
+                  }"
+                />
+              </template>
+            </CardSkin>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <InfinityBanner class="-mb-[1px] border-y border-brand-950 py-5"
+      ><span class="pr-16 text-2xl uppercase italic"
+        >Other bundles</span
+      ></InfinityBanner
+    >
+
+    <section class="border-t border-brand-950 px-5">
+      <div class="-my-[1px] grid grid-cols-2 pl-[1px] pt-[1px]">
+        <CardBundle
+          v-for="(otherBundle, index) in otherBundles"
+          :key="`otherBundle-${otherBundle.displayName}-${index}`"
+          :bundle="otherBundle"
+          class="-ml-[1px] -mt-[1px] bg-brand-950 p-[1px]"
+        />
+      </div>
     </section>
   </div>
 </template>
@@ -87,10 +67,36 @@
 <script setup>
 const route = useRoute();
 const { data: skins } = await useFetch("/api/skins");
-
-const bundle = skins.value?.bundles.find(
+const bundleIndex = skins.value?.bundles.findIndex(
   (bundle) => bundle.uuid === route.params.bundle,
 );
+const bundle = skins.value.bundles[bundleIndex];
+
+function randomBundles() {
+  const maxIndex = skins.value.bundles.length - 1;
+  let randomBundles = [];
+
+  while (randomBundles.length < 4) {
+    const randomNumber = Math.floor(Math.random() * maxIndex);
+    const randomBundle = skins.value.bundles[randomNumber];
+
+    if (
+      randomNumber !== bundleIndex.value ||
+      !randomBundles.includes(randomBundle)
+    ) {
+      randomBundles.push(randomBundle);
+    }
+  }
+
+  return randomBundles;
+}
+
+const otherBundles = useState("test", randomBundles);
+
+// Change bundles on route change
+onMounted(() => {
+  otherBundles.value = randomBundles();
+});
 </script>
 
 <style lang="postcss">
@@ -98,7 +104,7 @@ const bundle = skins.value?.bundles.find(
   @apply border-y border-brand-950 bg-brand-50;
 
   & .p-bundle__banner {
-    @apply relative grid aspect-[16/6] grid-cols-4 gap-[1px] bg-brand-950 p-[1px];
+    @apply relative -mb-[1px] aspect-[16/6] bg-brand-950 p-[1px];
 
     &::before,
     &::after {

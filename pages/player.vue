@@ -52,7 +52,7 @@
       <div class="border border-t-0 border-brand-950 p-5">
         <ul
           v-show="activeItems === 'cards'"
-          class="grid flex-auto grid-cols-3 md:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12"
+          class="grid flex-auto grid-cols-3 pl-[1px] md:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12"
         >
           <li
             v-for="(card, index) in computedCards"
@@ -76,7 +76,7 @@
 
         <ul
           v-show="activeItems === 'titles'"
-          class="grid flex-auto grid-cols-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8"
+          class="grid flex-auto grid-cols-2 pl-[1px] md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8"
         >
           <li
             v-for="(title, index) in computedTitles"

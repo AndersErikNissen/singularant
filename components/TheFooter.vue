@@ -1,10 +1,5 @@
 <template>
-  <footer
-    class="c-the-footer"
-    :style="{
-      backgroundColor: colors.bg,
-    }"
-  >
+  <footer class="c-the-footer">
     <div
       class="flex items-start justify-between gap-5 border-l border-r border-[currentColor] px-5 py-10"
     >
@@ -26,7 +21,7 @@
     >
       <svg
         :style="{
-          color: colors.cta,
+          color: 'var(--color-cta)',
         }"
         class="c-the-footer__icon block h-auto w-full"
         width="92"
@@ -107,10 +102,6 @@
     </p>
   </footer>
 </template>
-
-<script setup>
-const colors = useColors();
-</script>
 
 <style lang="postcss">
 :where(.c-the-footer) {

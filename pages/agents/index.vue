@@ -7,7 +7,7 @@
       <section
         class="-mt-[1px] flex flex-wrap gap-[1px] bg-brand-950 p-[1px] pb-0"
       >
-        <AgentCard
+        <CardAgent
           v-for="(agent, index) in agents"
           :key="`agent-id-${index}`"
           :agent="agent"

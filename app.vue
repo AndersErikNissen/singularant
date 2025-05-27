@@ -1,16 +1,28 @@
 <template>
-  <div
-    id="app"
-    :style="{
-      color: colors.body,
-    }"
-  >
-    <TheHeader />
-    <main>
+  <div id="app">
+    <TheHeader
+      :style="{
+        color: colors.header.color,
+        backgroundColor: colors.header.bg,
+      }"
+    />
+    <main
+      :style="{
+        color: colors.body.color,
+        backgroundColor: colors.body.bg,
+      }"
+    >
       <NuxtPage />
     </main>
     <div class="pointer-events-none absolute h-[57px] w-full" ref="trigger" />
-    <TheFooter :class="{ visible: isVisible }" />
+    <TheFooter
+      :class="{ visible: isVisible }"
+      :style="{
+        color: colors.footer.color,
+        backgroundColor: colors.footer.bg,
+        '--color-cta': colors.footer.cta,
+      }"
+    />
     <TheCurtain />
   </div>
 </template>

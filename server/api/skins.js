@@ -2,6 +2,8 @@ export default defineEventHandler(async (event) => {
   let skins = await useStorage().getItem("skins");
 
   if (!skins) {
+    const player = await $fetch("/api/player");
+
     const bundles = await $fetch("https://valorant-api.com/v1/bundles").then(
       (res) => res.data,
     );
@@ -27,6 +29,21 @@ export default defineEventHandler(async (event) => {
 
       if (matchingWeapons.length > 0) {
         bundle.items.push({ displayName: "weapons", items: matchingWeapons });
+      }
+
+      const matchingCards = player.cards.filter((card) => {
+        let cardName = card.displayName;
+        let lastIndex = cardName.lastIndexOf(" ");
+        cardName = cardName.substring(0, lastIndex); // Remove last word
+
+        return cardName === bundle.displayName;
+      });
+
+      if (matchingCards.length > 0) {
+        bundle.items.push({
+          displayName: "player cards",
+          items: matchingCards,
+        });
       }
 
       const matchingBuddies = buddies.filter((buddie) =>

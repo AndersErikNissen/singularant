@@ -10,10 +10,16 @@
         class="flex items-center justify-between gap-5 border-x border-brand-950 p-5"
       >
         <h2 class="text-2xl uppercase">
-          Selected bundles ({{ currentIndex + 1 }} /
+          Selected bundles ({{ currentIndex + 2 }} /
           {{ selectedBundles.length }})
         </h2>
         <div class="flex gap-1">
+          <NuxtLink
+            class="flex h-10 items-center border border-brand-950 px-3 duration-300 hover:border-brand-500 hover:bg-brand-500 hover:text-brand-50"
+            to="/skins/bundles"
+          >
+            <span>SEE ALL</span>
+          </NuxtLink>
           <button
             @click="() => scroller.scrollToIndex('<')"
             class="flex size-10 items-center justify-center border border-brand-950 p-3 text-lg font-bold duration-300 hover:border-brand-500 hover:bg-brand-500 hover:text-brand-50"
@@ -28,31 +34,22 @@
           </button>
         </div>
       </div>
-      <AScroller
-        class="no-scrollbar flex w-full justify-start gap-[1px] overflow-x-scroll bg-brand-950 p-[1px]"
-        ref="scroller"
-        :count="selectedBundles.length"
-        :current-index="currentIndex"
-        @change="currentIndex = $event"
-      >
-        <div
-          v-for="(bundle, index) in selectedBundles"
-          class="relative aspect-[16/9] flex-[0_0_calc(50%_-_0.5px)]"
-          :key="index + '-' + bundle.uuid"
+      <div class="border-x border-brand-950">
+        <AScroller
+          class="no-scrollbar flex w-full justify-start gap-[1px] overflow-x-scroll bg-brand-950 py-[1px]"
+          ref="scroller"
+          :count="selectedBundles.length"
+          :current-index="currentIndex"
+          @change="currentIndex = $event"
         >
-          <img
-            :src="bundle.displayIcon ?? bundle.displayIcon2"
-            class="size-full object-cover"
+          <CardBundle
+            v-for="(bundle, index) in selectedBundles"
+            :key="`p-bundles-bundle-${bundle.displayName}-${index}`"
+            :bundle="bundle"
+            class="flex-[0_0_calc(50%_-_0.5px)]"
           />
-          <div class="mt-[1px] bg-brand-50 p-3">
-            <p class="uppercase">{{ bundle.displayName }}</p>
-          </div>
-          <NuxtLink
-            class="absolute left-0 top-0 size-full"
-            :to="`/skins/bundles/${bundle.uuid}`"
-          />
-        </div>
-      </AScroller>
+        </AScroller>
+      </div>
     </section>
   </div>
 </template>

@@ -3,6 +3,11 @@
     <span class="c-a-button__slot">
       <slot />
     </span>
+    <NuxtLink
+      class="absolute left-0 top-0 size-full"
+      v-if="to.length > 0"
+      :to="to"
+    />
   </component>
 </template>
 
@@ -12,12 +17,16 @@ defineProps({
     type: String,
     default: "button",
   },
+  to: {
+    type: URL,
+    default: "",
+  },
 });
 </script>
 
 <style lang="postcss">
 .c-a-button {
-  @apply inline-block min-w-40 font-medium py-3 px-5 bg-brand-50 relative overflow-hidden justify-center duration-300 text-[currentColor];
+  @apply relative inline-block min-w-40 justify-center overflow-hidden bg-brand-50 px-5 py-3 font-medium text-[currentColor] duration-300;
 }
 
 :where(.c-a-button__slot) {
@@ -31,7 +40,7 @@ defineProps({
 
 .c-a-button::before {
   content: "";
-  @apply absolute size-full top-0 left-0 -translate-y-full duration-300 transition-all bg-brand-500;
+  @apply absolute left-0 top-0 size-full -translate-y-full bg-brand-500 transition-all duration-300;
 }
 
 .c-a-button--inherit::before {

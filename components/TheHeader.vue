@@ -1,7 +1,10 @@
 <template>
   <header
     class="the-header"
-    :class="{ 'fixed bg-[transparent] text-brand-50': route.fullPath === '/' }"
+    :class="{ fixed: route.fullPath === '/' }"
+    :style="{
+      backgroundColor: colors.header.bg,
+    }"
   >
     <div
       class="-my-[1px] flex w-full items-stretch justify-between border border-[currentColor]"
@@ -18,6 +21,7 @@
 
 <script setup>
 const route = useRoute();
+const colors = useColors();
 </script>
 
 <style lang="postcss">

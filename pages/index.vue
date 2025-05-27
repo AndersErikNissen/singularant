@@ -21,3 +21,12 @@
     </div>
   </div>
 </template>
+
+<script setup>
+useColors({ header: { color: 50, bg: "transparent" } });
+
+onBeforeRouteLeave((to, from, next) => {
+  useColors(); // clear colors
+  next();
+});
+</script>

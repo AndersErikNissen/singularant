@@ -137,7 +137,7 @@
           <h3 class="text-4xl uppercase">Other agents</h3>
         </div>
         <div class="grid grid-cols-3 gap-[1px] bg-[currentColor] py-[1px]">
-          <AgentCard
+          <CardAgent
             v-for="(agent, index) in adjacentAgents"
             :key="index"
             :agent="agent"
@@ -158,6 +158,20 @@ const agentIndex = agents.value.findIndex(
 );
 const agent = agents.value[agentIndex];
 
+useColors({
+  header: {
+    color: "#" + agent.backgroundGradientColors[1],
+  },
+  body: {
+    color: "#" + agent.backgroundGradientColors[1],
+  },
+  footer: {
+    color: "#" + agent.backgroundGradientColors[1],
+    bg: "#" + agent.backgroundGradientColors[0],
+    cta: "#" + agent.backgroundGradientColors[3],
+  },
+});
+
 const adjacentAgents = computed(() => {
   let adjacentAgents = [];
   for (let i = 1; i < 4; i++) {
@@ -173,12 +187,6 @@ const adjacentAgents = computed(() => {
   return adjacentAgents;
 });
 
-useColors({
-  body: "#" + agent.backgroundGradientColors[1],
-  bg: "#" + agent.backgroundGradientColors[0],
-  cta: "#" + agent.backgroundGradientColors[3],
-});
-
 const activeAbility = ref(agent.abilities[0].displayName);
 const abilityInheritBackground = ref(false);
 
@@ -187,7 +195,7 @@ watch(activeAbility, () => {
 });
 
 onBeforeRouteLeave((to, from, next) => {
-  useColors();
+  useColors(); // clear colors
   next();
 });
 </script>

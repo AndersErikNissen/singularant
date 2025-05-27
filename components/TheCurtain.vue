@@ -9,19 +9,16 @@
   </div>
 </template>
 
-<script setup></script>
-
 <style lang="postcss">
 :where(.c-the-curtain) {
   @apply fixed left-0 top-0 z-50 hidden size-full items-center justify-center overflow-hidden bg-brand-200 p-5 text-brand-800;
 }
 
-/** Simple solution:
-  body:has(.page-leave-from) #app > *:not(.c-the-curtain),
-  body:has(.page-leave-to) #app > *:not(.c-the-curtain) {
-    @apply hidden;
-  }
- */
+/* Simple solution: */
+body:has(.page-leave-from) #app > *:not(.c-the-curtain),
+body:has(.page-leave-to) #app > *:not(.c-the-curtain) {
+  @apply hidden;
+}
 
 body:has(.page-enter-from) .c-the-curtain,
 body:has(.page-enter-to) .c-the-curtain,

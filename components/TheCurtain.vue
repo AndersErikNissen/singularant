@@ -16,8 +16,9 @@
 
 /* Simple solution: */
 body:has(.page-leave-from) #app > *:not(.c-the-curtain),
+body:has(.page-leave-active) #app > *:not(.c-the-curtain),
 body:has(.page-leave-to) #app > *:not(.c-the-curtain) {
-  @apply hidden;
+  @apply opacity-0;
 }
 
 body:has(.page-enter-from) .c-the-curtain,

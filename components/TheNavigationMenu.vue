@@ -3,6 +3,7 @@
     <li
       v-for="(item, index) in menuItems"
       :key="`c-the-navigation-menu-item-id-${index}`"
+      class="c-the-navigation-menu__item"
     >
       <NuxtLink :to="item.path">{{ item.name }}</NuxtLink>
     </li>

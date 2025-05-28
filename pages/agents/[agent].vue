@@ -195,7 +195,9 @@ watch(activeAbility, () => {
 });
 
 onBeforeRouteLeave((to, from, next) => {
-  useColors(); // clear colors
+  setTimeout(() => {
+    useColors();
+  }, 1000); // clear colors
   next();
 });
 </script>

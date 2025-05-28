@@ -20,24 +20,26 @@ export default defineEventHandler(async (event) => {
       (res) => res.data,
     );
 
+    function matchingWithBundle(str, bundleName) {
+      const lastIndex = str.lastIndexOf(" ");
+      const strWithoutLastWord = str.substring(0, lastIndex);
+      return bundleName + " " === strWithoutLastWord + " ";
+    }
+
     bundles.forEach((bundle) => {
       bundle.items = [];
 
       const matchingWeapons = weapons.filter((weapon) =>
-        weapon.displayName.includes(bundle.displayName),
+        matchingWithBundle(weapon.displayName, bundle.displayName),
       );
 
       if (matchingWeapons.length > 0) {
         bundle.items.push({ displayName: "weapons", items: matchingWeapons });
       }
 
-      const matchingCards = player.cards.filter((card) => {
-        let cardName = card.displayName;
-        let lastIndex = cardName.lastIndexOf(" ");
-        cardName = cardName.substring(0, lastIndex); // Remove last word
-
-        return cardName === bundle.displayName;
-      });
+      const matchingCards = player.cards.filter((card) =>
+        matchingWithBundle(card.displayName, bundle.displayName),
+      );
 
       if (matchingCards.length > 0) {
         bundle.items.push({
@@ -47,7 +49,7 @@ export default defineEventHandler(async (event) => {
       }
 
       const matchingBuddies = buddies.filter((buddie) =>
-        buddie.displayName.includes(bundle.displayName),
+        matchingWithBundle(buddie.displayName, bundle.displayName),
       );
 
       if (matchingBuddies.length > 0) {
@@ -55,7 +57,7 @@ export default defineEventHandler(async (event) => {
       }
 
       const matchingSprays = sprays.filter((spray) =>
-        spray.displayName.includes(bundle.displayName),
+        matchingWithBundle(spray.displayName, bundle.displayName),
       );
 
       if (matchingSprays.length > 0) {

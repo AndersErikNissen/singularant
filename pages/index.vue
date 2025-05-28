@@ -26,7 +26,9 @@
 useColors({ header: { color: 50, bg: "transparent" } });
 
 onBeforeRouteLeave((to, from, next) => {
-  useColors(); // clear colors
+  setTimeout(() => {
+    useColors();
+  }, 1000); // clear colors
   next();
 });
 </script>

@@ -26,7 +26,7 @@ const colors = useColors();
 
 <style lang="postcss">
 :where(.the-header) {
-  @apply sticky left-0 top-0 z-50 -mb-[1px] w-full border-b border-t border-[currentColor] bg-brand-50 px-5;
+  @apply sticky left-0 top-0 z-10 -mb-[1px] w-full border-b border-t border-[currentColor] bg-brand-50 px-5;
 
   & .c-the-navigation-menu {
     & li {

@@ -1,5 +1,6 @@
 <template>
   <div class="p-bundle">
+    <pre>{{ bundle.items.cards }}</pre>
     <PageHeader class="-mt-[1px]" :crumbs="['skins', 'bundles']">
       {{ bundle.displayName }}
     </PageHeader>

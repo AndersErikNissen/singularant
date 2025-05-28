@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <TheModal />
     <TheHeader
       :style="{
         color: colors.header.color,
@@ -7,6 +8,7 @@
       }"
     />
     <main
+      class="relative z-[1]"
       :style="{
         color: colors.body.color,
         backgroundColor: colors.body.bg,
@@ -15,6 +17,10 @@
       <NuxtPage />
     </main>
     <div class="pointer-events-none absolute h-[57px] w-full" ref="trigger" />
+    <div
+      class="pointer-events-none absolute left-0 top-0 h-[300vh] max-h-full w-full"
+      ref="scroll-top-trigger"
+    />
     <TheFooter
       :class="{ visible: isVisible }"
       :style="{
@@ -23,6 +29,14 @@
         '--color-cta': colors.footer.cta,
       }"
     />
+    <Transition name="scroll-top">
+      <div
+        v-if="scrollTop"
+        class="fixed bottom-0 right-5 border border-brand-950 uppercase"
+      >
+        <AButton @click="scrolToTop">Scroll top</AButton>
+      </div>
+    </Transition>
     <TheCurtain />
   </div>
 </template>
@@ -40,4 +54,63 @@ useIntersectionObserver(
   },
   { threshold: 1 },
 );
+
+const scrollTop = ref(false);
+const scrollTopTrigger = useTemplateRef("scroll-top-trigger");
+const scrolToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+useIntersectionObserver(
+  scrollTopTrigger,
+  ([entry]) => {
+    scrollTop.value = entry?.isIntersecting ? false : true;
+  },
+  { threshold: 0 },
+);
 </script>
+
+<style lang="postcss">
+#app {
+  @apply relative;
+}
+
+/* Scroll top animation */
+.scroll-top-enter-from,
+.scroll-top-leave-to {
+  @apply translate-y-full;
+}
+
+.scroll-top-enter-active,
+.scroll-top-leave-active {
+  @apply transition-transform duration-300;
+}
+</style>
+
+<!-- 
+  # To do:
+
+  # Gloval modal
+  - ✅ Look into Teleport
+  - ✅ Implement modal
+  - ✅ Make player modal be replaced with new modal
+
+  # Header
+  - Animations for the menu links
+    + More x-padding
+
+  # Footer
+  - Box up the menu links, maybe put them in a row
+
+  # Menu
+  - ? Create hamburger menu ?
+  - ? Or make the current header work on mobile ?
+
+  # Bundles
+  - ✅ Search
+
+  # Global
+  - ✅ Move scroll top to global
+
+
+-->

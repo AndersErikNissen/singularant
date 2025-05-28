@@ -3,11 +3,6 @@
     <span class="c-a-button__slot">
       <slot />
     </span>
-    <NuxtLink
-      class="absolute left-0 top-0 size-full"
-      v-if="to.length > 0"
-      :to="to"
-    />
   </component>
 </template>
 
@@ -16,10 +11,6 @@ defineProps({
   tag: {
     type: String,
     default: "button",
-  },
-  to: {
-    type: URL,
-    default: "",
   },
 });
 </script>

@@ -1,7 +1,7 @@
 <template>
   <footer class="c-the-footer">
     <div
-      class="flex items-start justify-between gap-5 border-l border-r border-[currentColor] px-5 py-10"
+      class="z-10 flex items-start justify-between gap-5 border-l border-r border-[currentColor] px-5 py-10"
     >
       <div class="max-w-[400px]">
         <p class="text-sm leading-5">
@@ -13,7 +13,9 @@
           in any way.
         </p>
       </div>
-      <TheNavigationMenu class="grid grid-cols-1 gap-1" />
+    </div>
+    <div class="border border-b-0 border-[currentColor]">
+      <TheNavigationMenu class="c-the-footer__menu" />
     </div>
     <div
       class="border-l border-r border-t border-[currentColor] p-5"
@@ -105,7 +107,19 @@
 
 <style lang="postcss">
 :where(.c-the-footer) {
-  @apply sticky bottom-0 -z-10 -mt-[1px] grid grid-cols-1 border-b border-t px-5;
+  @apply sticky bottom-0 -mt-[1px] grid grid-cols-1 border-b border-t px-5;
+
+  & .c-the-footer__menu {
+    @apply -mr-[1px] flex;
+
+    & .c-the-navigation-menu__item {
+      @apply flex-auto border-r border-[currentColor] text-center;
+
+      & a {
+        @apply block size-full flex-auto p-3;
+      }
+    }
+  }
 }
 
 :where(.c-the-footer:not(.visible) .c-the-footer__icon > path) {

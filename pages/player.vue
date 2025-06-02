@@ -89,7 +89,10 @@
         </ul>
 
         <div
-          v-show="computedCards.length === 0"
+          v-show="
+            (activeItems === 'cards' && computedCards.length === 0) ||
+            (activeItems === 'titles' && computedTitles.length === 0)
+          "
           class="border border-brand-950 p-5"
         >
           <p class="text-lg">No results - try again!</p>

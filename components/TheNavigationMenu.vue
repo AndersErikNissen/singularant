@@ -1,31 +1,30 @@
 <template>
-  <ul class="c-the-navigation-menu">
-    <li
+  <div class="c-the-navigation-menu">
+    <template
       v-for="(item, index) in menuItems"
       :key="`c-the-navigation-menu-item-id-${index}`"
-      class="c-the-navigation-menu__item"
     >
-      <NuxtLink :to="item.path">{{ item.name }}</NuxtLink>
-    </li>
-  </ul>
+      <slot name="item" :item="item" :index="index" />
+    </template>
+  </div>
 </template>
 
 <script setup>
 const menuItems = [
   {
-    name: "About",
+    label: "About",
     path: "/about",
   },
   {
-    name: "Agents",
+    label: "Agents",
     path: "/agents",
   },
   {
-    name: "Skins",
+    label: "Skins",
     path: "/skins",
   },
   {
-    name: "Player",
+    label: "Player",
     path: "/player",
   },
 ];

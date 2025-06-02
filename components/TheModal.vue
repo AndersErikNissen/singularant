@@ -43,7 +43,6 @@ const emit = defineEmits(["close"]);
 watch(
   () => props.show,
   (newValue) => {
-    console.log("🎉");
     if (newValue) document.body.classList.add("overflow-hidden");
   },
 );

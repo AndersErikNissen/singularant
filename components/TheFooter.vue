@@ -15,7 +15,23 @@
       </div>
     </div>
     <div class="border border-b-0 border-[currentColor]">
-      <TheNavigationMenu class="c-the-footer__menu" />
+      <TheNavigationMenu class="flex">
+        <template #item="{ item, index }">
+          <div
+            class="flex-auto border-[currentColor] text-center"
+            :class="{
+              'border-l': index !== 0,
+            }"
+          >
+            <NuxtLink
+              :to="item.path"
+              class="group block size-full flex-auto p-3"
+            >
+              <AnimateText :text="item.label" />
+            </NuxtLink>
+          </div>
+        </template>
+      </TheNavigationMenu>
     </div>
     <div
       class="border-l border-r border-t border-[currentColor] p-5"
@@ -108,18 +124,6 @@
 <style lang="postcss">
 :where(.c-the-footer) {
   @apply sticky bottom-0 -mt-[1px] grid grid-cols-1 border-b border-t px-5;
-
-  & .c-the-footer__menu {
-    @apply -mr-[1px] flex;
-
-    & .c-the-navigation-menu__item {
-      @apply flex-auto border-r border-[currentColor] text-center;
-
-      & a {
-        @apply block size-full flex-auto p-3;
-      }
-    }
-  }
 }
 
 :where(.c-the-footer:not(.visible) .c-the-footer__icon > path) {

@@ -14,7 +14,16 @@
       </NuxtLink>
       <TheNavigationMenu
         class="text-light flex items-stretch border-l border-[currentColor] text-lg"
-      />
+      >
+        <template #item="{ item, index }">
+          <NuxtLink
+            :to="item.path"
+            class="group flex h-full items-center border-[currentColor] px-9 py-2"
+            :class="{ 'border-l': index !== 0 }"
+            ><AnimateText :text="item.label"
+          /></NuxtLink>
+        </template>
+      </TheNavigationMenu>
     </div>
   </header>
 </template>
@@ -27,15 +36,5 @@ const colors = useColors();
 <style lang="postcss">
 :where(.the-header) {
   @apply sticky left-0 top-0 z-10 -mb-[1px] w-full border-b border-t border-[currentColor] bg-brand-50 px-5;
-
-  & .c-the-navigation-menu {
-    & li {
-      @apply flex items-center p-5;
-    }
-
-    & > li:not(:first-child) {
-      @apply border-l border-[currentColor];
-    }
-  }
 }
 </style>

@@ -150,6 +150,8 @@
 </template>
 
 <script setup>
+useColors();
+
 const scroller = ref(null);
 const currentIndex = ref(0);
 

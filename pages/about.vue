@@ -72,7 +72,7 @@
           </div>
         </div>
         <div class="relative col-span-2 bg-brand-500">
-          <NuxtImg
+          <img
             class="absolute left-0 top-0 size-full object-cover"
             src="/media/Valorant_EP8_Teaser_Cypher_Reborn.jpg"
           />
@@ -118,7 +118,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+useColors();
+</script>
 
 <style lang="postcss">
 :where(.p-about) {

@@ -7,9 +7,15 @@
         <h1 class="text-7xl">Welcome to Singularant</h1>
         <p class="text-lg">
           A small fun project build & designed by
-          <NuxtLink to="https://aenders.dk">AENDERS</NuxtLink>, and using the
-          <NuxtLink to="https://dash.valorant-api.com/">Valorant-API</NuxtLink>
-          for the data
+          <NuxtLink class="underline underline-offset-2" to="https://aenders.dk"
+            >AENDERS</NuxtLink
+          >, and using the
+          <NuxtLink
+            class="underline underline-offset-2"
+            to="https://dash.valorant-api.com/"
+            >Valorant-API</NuxtLink
+          >
+          for all the data
         </p>
       </div>
     </section>

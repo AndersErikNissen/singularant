@@ -63,6 +63,8 @@
 </template>
 
 <script setup>
+useColors();
+
 const route = useRoute();
 const { data: ingame } = await useFetch("/api/ingame");
 const bundleIndex = ingame.value?.bundles.findIndex(

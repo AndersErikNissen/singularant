@@ -18,6 +18,8 @@
 </template>
 
 <script setup>
+useColors();
+
 const { data: ingame } = await useFetch("/api/ingame");
 const { bundles } = ingame.value;
 

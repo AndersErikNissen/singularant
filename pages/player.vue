@@ -142,6 +142,8 @@
 </template>
 
 <script setup>
+useColors();
+
 const { data: player } = await useFetch("/api/player");
 
 const activeItems = ref("cards");

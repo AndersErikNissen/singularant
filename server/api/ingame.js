@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
-  let skins = await useStorage().getItem("skins");
+  let ingame = await useStorage().getItem("ingame");
 
-  if (!skins) {
+  if (!ingame) {
     const player = await $fetch("/api/player");
 
     const bundles = await $fetch("https://valorant-api.com/v1/bundles").then(
@@ -65,15 +65,15 @@ export default defineEventHandler(async (event) => {
       }
     });
 
-    skins = {
+    ingame = {
       bundles: bundles,
       weapons: weapons,
       buddies: buddies,
       sprays: sprays,
     };
 
-    useStorage().setItem("skins", skins);
+    useStorage().setItem("ingame", ingame);
   }
 
-  return skins;
+  return ingame;
 });

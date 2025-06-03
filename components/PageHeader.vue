@@ -39,7 +39,7 @@ let currentPath = "";
 const breadcrumbs = [];
 
 crumbs.forEach((path) => {
-  currentPath = currentPath + "/" + path;
+  currentPath = currentPath + "/" + path.replace("-", "");
   breadcrumbs.push(currentPath);
 });
 </script>

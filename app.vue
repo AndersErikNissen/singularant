@@ -4,7 +4,7 @@
     <TheHeader
       :style="{
         color: colors.header.color,
-        backgroundColor: colors.header.bg,
+        '--color-bg': colors.header.bg,
       }"
     />
     <main
@@ -25,14 +25,14 @@
       :class="{ visible: isVisible }"
       :style="{
         color: colors.footer.color,
-        backgroundColor: colors.footer.bg,
+        '--color-bg': colors.footer.bg,
         '--color-cta': colors.footer.cta,
       }"
     />
     <Transition name="scroll-top">
       <div
         v-if="scrollTop"
-        class="fixed bottom-0 right-5 border border-brand-950 uppercase"
+        class="fixed bottom-0 right-5 z-10 border border-brand-950 uppercase"
       >
         <AButton @click="scrolToTop">Scroll top</AButton>
       </div>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-const colors = useColors();
+const colors = useColors(null, "app");
 
 const trigger = ref();
 const isVisible = shallowRef(false);
@@ -90,27 +90,11 @@ useIntersectionObserver(
 <!-- 
   # To do:
 
-  # Gloval modal
-  - ✅ Look into Teleport
-  - ✅ Implement modal
-  - ✅ Make player modal be replaced with new modal
-
-  # Header
-  - Animations for the menu links
-    + More x-padding
-
-  # Footer
-  - Box up the menu links, maybe put them in a row
-
   # Menu
   - ? Create hamburger menu ?
   - ? Or make the current header work on mobile ?
 
-  # Bundles
-  - ✅ Search
-
-  # Global
-  - ✅ Move scroll top to global
-
+  # Mobile
+  - Styles all pages
 
 -->

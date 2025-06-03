@@ -18,16 +18,13 @@
       <TheNavigationMenu class="flex">
         <template #item="{ item, index }">
           <div
-            class="flex-auto border-[currentColor] text-center"
+            class="flex-auto border-[currentColor] text-center uppercase"
             :class="{
               'border-l': index !== 0,
             }"
           >
-            <NuxtLink
-              :to="item.path"
-              class="group block size-full flex-auto p-3"
-            >
-              <AnimateText :text="item.label" />
+            <NuxtLink :to="item.path" class="menu-item group">
+              <AnimateText class="relative" :text="item.label" />
             </NuxtLink>
           </div>
         </template>
@@ -124,6 +121,26 @@
 <style lang="postcss">
 :where(.c-the-footer) {
   @apply sticky bottom-0 -mt-[1px] grid grid-cols-1 border-b border-t px-5;
+  background-color: var(--color-bg, currentColor);
+
+  & .menu-item {
+    @apply relative flex size-full flex-auto items-center justify-center overflow-hidden p-3;
+
+    &::before {
+      content: "";
+      @apply absolute left-0 top-0 block size-full -translate-y-full bg-[currentColor] duration-300;
+    }
+
+    &:hover {
+      & span {
+        color: var(--color-bg);
+      }
+
+      &::before {
+        @apply translate-y-0;
+      }
+    }
+  }
 }
 
 :where(.c-the-footer:not(.visible) .c-the-footer__icon > path) {

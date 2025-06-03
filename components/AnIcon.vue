@@ -26,6 +26,11 @@
       d="M4 18L12.3864 10.0174L4 2H7.68182L16 10.0174L7.68182 18H4Z"
       fill="currentColor"
     />
+    <path
+      v-if="type === 'checkmark'"
+      d="M8.59806 17L19.5 6.24247L17.2274 4L8.61578 12.4976L2.7903 6.74925L0.5 9.00921L8.59806 17Z"
+      fill="currentColor"
+    />
   </svg>
 </template>
 

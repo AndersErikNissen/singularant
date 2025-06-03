@@ -36,18 +36,26 @@ const placeholder = ref();
 const duration = ref(props.duration);
 const itemCount = ref(0);
 
-onMounted(() => {
+function init() {
+  if (ready.value) ready.value = false;
   const placeholderWidth = placeholder.value.getBoundingClientRect().width;
   const componentWidth = component.value.getBoundingClientRect().width;
   itemCount.value = Math.ceil(componentWidth / placeholderWidth);
-  duration.value = duration.value * (componentWidth / (placeholderWidth * itemCount.value)); // Adjust duration since the content will be wider than the component
+  duration.value =
+    duration.value * (componentWidth / (placeholderWidth * itemCount.value)); // Adjust duration since the content will be wider than the component
   ready.value = true;
+}
+
+onMounted(() => {
+  init();
+
+  window.addEventListener("resize", init);
 });
 </script>
 
 <style lang="postcss">
 :where(.c-infinity-banner) {
-  @apply overflow-hidden flex;
+  @apply flex overflow-hidden;
 }
 :where(.c-infinity-banner__content) {
   @apply flex flex-shrink-0;

@@ -1,7 +1,7 @@
 <template>
   <div class="p-bundle">
     <pre>{{ bundle.items.cards }}</pre>
-    <PageHeader class="-mt-[1px]" :crumbs="['skins', 'bundles']">
+    <PageHeader class="-mt-[1px]" :crumbs="['in-game', 'bundles']">
       {{ bundle.displayName }}
     </PageHeader>
     <section class="p-bundle__banner">
@@ -22,26 +22,23 @@
       >
       <div class="px-5">
         <div class="grid grid-cols-4 pl-[1px]">
-          <template
+          <CardIngame
             v-for="(childItem, index) in item.items"
             :key="`${childItem.uuid}-${index}`"
+            :item="childItem"
+            class="-ml-[1px] -mt-[1px] bg-brand-950 p-[1px]"
           >
-            <CardSkin
-              :skin="childItem"
-              class="-ml-[1px] -mt-[1px] bg-brand-950 p-[1px]"
-            >
-              <template #image="{ src }">
-                <img
-                  :src="src"
-                  class="object-contain duration-300 group-hover:scale-105"
-                  :class="{
-                    'max-h-[23%]': item.displayName === 'weapons',
-                    'max-h-full': item.displayName !== 'weapons',
-                  }"
-                />
-              </template>
-            </CardSkin>
-          </template>
+            <template #image="{ src }">
+              <img
+                :src="src"
+                class="object-contain duration-300 group-hover:scale-105"
+                :class="{
+                  'max-h-[23%]': item.displayName === 'weapons',
+                  'max-h-full': item.displayName !== 'weapons',
+                }"
+              />
+            </template>
+          </CardIngame>
         </div>
       </div>
     </section>
@@ -67,36 +64,19 @@
 
 <script setup>
 const route = useRoute();
-const { data: skins } = await useFetch("/api/skins");
-const bundleIndex = skins.value?.bundles.findIndex(
+const { data: ingame } = await useFetch("/api/ingame");
+const bundleIndex = ingame.value?.bundles.findIndex(
   (bundle) => bundle.uuid === route.params.bundle,
 );
-const bundle = skins.value.bundles[bundleIndex];
+const bundle = ingame.value.bundles[bundleIndex];
 
-function randomBundles() {
-  const maxIndex = skins.value.bundles.length - 1;
-  let randomBundles = [];
-
-  while (randomBundles.length < 4) {
-    const randomNumber = Math.floor(Math.random() * maxIndex);
-    const randomBundle = skins.value.bundles[randomNumber];
-
-    if (
-      randomNumber !== bundleIndex.value ||
-      !randomBundles.includes(randomBundle)
-    ) {
-      randomBundles.push(randomBundle);
-    }
-  }
-
-  return randomBundles;
-}
-
-const otherBundles = useState("test", randomBundles);
+const otherBundles = useState("otherBundles", () =>
+  useRandomArray(ingame.value.bundles, 4, [bundleIndex]),
+);
 
 // Change bundles on route change
 onMounted(() => {
-  otherBundles.value = randomBundles();
+  otherBundles.value = useRandomArray(ingame.value.bundles, 4, [bundleIndex]);
 });
 </script>
 

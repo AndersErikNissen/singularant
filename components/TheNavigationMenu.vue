@@ -16,16 +16,16 @@ const menuItems = [
     path: "/about",
   },
   {
-    label: "Agents",
-    path: "/agents",
-  },
-  {
-    label: "Skins",
-    path: "/skins",
-  },
-  {
     label: "Player",
     path: "/player",
+  },
+  {
+    label: "In-game",
+    path: "/ingame",
+  },
+  {
+    label: "Agents",
+    path: "/agents",
   },
 ];
 </script>

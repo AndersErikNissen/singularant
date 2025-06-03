@@ -57,7 +57,7 @@ function closeModal() {
 
 <style lang="postcss">
 :where(.c-the-modal) {
-  @apply fixed left-0 top-0 z-50 flex size-full bg-brand-500 bg-opacity-60;
+  @apply fixed left-0 top-0 z-50 flex size-full bg-brand-50 bg-opacity-60 backdrop-blur-lg;
 
   & .c-the-modal__content {
     @apply relative p-5;
@@ -67,7 +67,7 @@ function closeModal() {
 /* ANIMATION */
 .modal-enter-from,
 .modal-leave-to {
-  @apply bg-opacity-0;
+  @apply bg-opacity-0 backdrop-blur-0;
 
   & .c-the-modal__content {
     @apply -translate-x-full;

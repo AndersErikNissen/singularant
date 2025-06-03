@@ -1,6 +1,6 @@
 <template>
   <div class="p-bundles">
-    <PageHeader :crumbs="['skins']"> Bundles </PageHeader>
+    <PageHeader :crumbs="['in-game']"> Bundles </PageHeader>
     <div class="-mt-[1px] px-5">
       <SearchField @change:query="query = $event" />
     </div>
@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-const { data: skins } = await useFetch("/api/skins");
-const { bundles } = skins.value;
+const { data: ingame } = await useFetch("/api/ingame");
+const { bundles } = ingame.value;
 
 const query = ref("");
 

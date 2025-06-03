@@ -11,7 +11,7 @@
           v-for="(agent, index) in agents"
           :key="`agent-id-${index}`"
           :agent="agent"
-          class="flex-[1_0_calc((100%_-_2px)_/_3)]"
+          class="flex-[1_0_calc((100%_-_1px)_/_2)] sm:flex-[1_0_calc((100%_-_2px)_/_3)] 2xl:flex-[1_0_calc((100%_-_3px)_/_4)]"
         />
       </section>
     </div>

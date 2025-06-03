@@ -4,7 +4,7 @@ export const useColors = (colorObject) => {
   const colors = useState("colors");
 
   // defaults
-  let newColors = {
+  let updatedColors = {
     header: {
       color: twColors.brand[950],
       bg: twColors.brand[50],
@@ -34,30 +34,30 @@ export const useColors = (colorObject) => {
   if (colorObject) {
     if (colorObject.header) {
       for (const key in colorObject.header) {
-        newColors.header[key] = setColor(colorObject.header[key]);
+        updatedColors.header[key] = setColor(colorObject.header[key]);
       }
     }
 
     if (colorObject.body) {
       for (const key in colorObject.body) {
-        newColors.body[key] = setColor(colorObject.body[key]);
+        updatedColors.body[key] = setColor(colorObject.body[key]);
       }
     }
 
     if (colorObject.footer) {
       for (const key in colorObject.footer) {
-        newColors.footer[key] = setColor(colorObject.footer[key]);
+        updatedColors.footer[key] = setColor(colorObject.footer[key]);
       }
     }
 
     if (!colorObject.header && !colorObject.body && !colorObject.footer) {
-      newColors.header = colorObject;
-      newColors.body = colorObject;
-      newColors.footer = colorObject;
+      updatedColors.header = colorObject;
+      updatedColors.body = colorObject;
+      updatedColors.footer = colorObject;
     }
   }
 
-  colors.value = newColors;
+  colors.value = updatedColors;
 
   return colors;
 };

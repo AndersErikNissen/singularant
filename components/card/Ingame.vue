@@ -1,5 +1,5 @@
 <template>
-  <div class="c-card-skin group">
+  <div class="c-card-ingame group">
     <div
       class="relative flex size-full items-center justify-center overflow-hidden bg-brand-50 p-5"
     >
@@ -7,11 +7,11 @@
 
       <div class="absolute bottom-0 left-0 w-full overflow-hidden">
         <div
-          v-if="skin.chromas?.length > 0"
+          v-if="item.chromas?.length > 0"
           class="flex translate-y-full flex-wrap duration-300 group-hover:translate-y-0"
         >
           <template
-            v-for="(chroma, index) in skin.chromas"
+            v-for="(chroma, index) in item.chromas"
             :key="chroma.displayName + index"
           >
             <img
@@ -28,19 +28,19 @@
       </div>
     </div>
     <div
-      v-if="skin.displayName.length > 0"
+      v-if="item.displayName?.length > 0"
       class="w-full border-t border-brand-950 bg-brand-50"
     >
       <p class="p-2 uppercase">
-        {{ skin.displayName }}
+        {{ item.displayName }}
       </p>
     </div>
   </div>
 </template>
 
 <script setup>
-const { skin } = defineProps({
-  skin: {
+const props = defineProps({
+  item: {
     type: Object,
     default: {},
   },
@@ -49,29 +49,29 @@ const { skin } = defineProps({
 const activeChroma = ref(0);
 
 const src = computed(() => {
-  if (skin.chromas) {
+  if (props.item.chromas) {
     return (
-      skin.chromas[activeChroma.value].displayIcon ||
-      skin.chromas[activeChroma.value].fullRender ||
-      skin.displayIcon
+      props.item.chromas[activeChroma.value].displayIcon ||
+      props.item.chromas[activeChroma.value].fullRender ||
+      props.item.displayIcon
     );
   }
 
-  if (skin.largeArt) {
-    return skin.largeArt || skin.smallArt || skin.displayIcon;
+  if (props.item.largeArt) {
+    return props.item.largeArt || props.item.smallArt || props.item.displayIcon;
   }
 
   return (
-    skin.animationPng ||
-    skin.animationGif ||
-    skin.fullTransparentIcon ||
-    skin.displayIcon
+    props.item.animationPng ||
+    props.item.animationGif ||
+    props.item.fullTransparentIcon ||
+    props.item.displayIcon
   );
 });
 </script>
 
 <style lang="postcss">
-:where(.c-card-skin) {
+:where(.c-card-ingame) {
   @apply flex aspect-square flex-col items-center justify-end;
 }
 

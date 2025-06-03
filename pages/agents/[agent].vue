@@ -193,13 +193,6 @@ const abilityInheritBackground = ref(false);
 watch(activeAbility, () => {
   abilityInheritBackground.value = !abilityInheritBackground.value;
 });
-
-onBeforeRouteLeave((to, from, next) => {
-  setTimeout(() => {
-    useColors();
-  }, 1000); // clear colors
-  next();
-});
 </script>
 
 <style lang="postcss">

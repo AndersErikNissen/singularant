@@ -6,7 +6,7 @@
       <div class="flex flex-col items-center justify-center gap-4">
         <h1 class="text-7xl">Welcome to Singularant</h1>
         <p class="text-lg">
-          Aa small fun project build & designed by
+          A small fun project build & designed by
           <NuxtLink to="https://aenders.dk">AENDERS</NuxtLink>, and using the
           <NuxtLink to="https://dash.valorant-api.com/">Valorant-API</NuxtLink>
           for the data
@@ -16,7 +16,7 @@
     <div class="absolute left-0 top-0 size-full overflow-hidden bg-brand-500">
       <img
         class="size-full object-cover"
-        src="/media/FFA_Deathmatch_Desktop.jpg"
+        src="/media/Valorant_EP-8-Teaser_The-arrival.jpg"
       />
     </div>
   </div>
@@ -24,11 +24,4 @@
 
 <script setup>
 useColors({ header: { color: 50, bg: "transparent" } });
-
-onBeforeRouteLeave((to, from, next) => {
-  setTimeout(() => {
-    useColors();
-  }, 1000); // clear colors
-  next();
-});
 </script>

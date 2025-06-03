@@ -18,10 +18,10 @@
       </ul>
     </div>
     <div class="border-t border-brand-950 bg-brand-50 p-2">
-      <p class="text-2xl uppercase">{{ bundle.displayName }}</p>
+      <p class="text-lg uppercase">{{ bundle.displayName }}</p>
     </div>
     <NuxtLink
-      :to="'/skins/bundles/' + bundle.uuid"
+      :to="'/ingame/bundles/' + bundle.uuid"
       class="absolute left-0 top-0 size-full"
     />
   </div>

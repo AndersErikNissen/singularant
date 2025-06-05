@@ -17,7 +17,7 @@ defineProps({
 
 <style lang="postcss">
 .c-a-button {
-  @apply relative inline-block min-w-40 justify-center overflow-hidden bg-brand-50 px-5 py-3 font-medium text-[currentColor] duration-300;
+  @apply relative inline-block justify-center overflow-hidden bg-brand-50 px-5 py-3 font-medium text-[currentColor] duration-300 sm:min-w-40;
 }
 
 :where(.c-a-button__slot) {

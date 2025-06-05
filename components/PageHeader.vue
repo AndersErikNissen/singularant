@@ -2,7 +2,7 @@
   <div class="c-page-header">
     <ul
       v-if="breadcrumbs.length > 0"
-      class="flex items-center gap-2 border-x border-b border-brand-950 p-5 text-sm uppercase text-brand-500"
+      class="flex items-center gap-2 border-x border-b border-brand-950 p-5 text-xs uppercase text-brand-500 sm:text-sm"
     >
       <template v-for="(crumb, index) in crumbs">
         <li>
@@ -20,7 +20,7 @@
     </ul>
 
     <div class="border-x border-brand-950 p-5">
-      <h1 class="text-4xl uppercase">
+      <h1 class="text-2xl uppercase sm:text-4xl">
         <slot />
       </h1>
     </div>

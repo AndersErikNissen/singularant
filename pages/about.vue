@@ -1,22 +1,24 @@
 <template>
   <div class="p-about">
     <section class="w-full border-y border-brand-50 px-5">
-      <div class="grid w-full grid-cols-3 gap-[1px] bg-brand-50 px-[1px]">
+      <div
+        class="grid w-full grid-cols-1 gap-[1px] bg-brand-50 px-[1px] sm:grid-cols-3"
+      >
         <div class="flex flex-col bg-brand-500 pt-5">
-          <h1 class="px-5 text-4xl uppercase">About SINGULARANT</h1>
+          <h1 class="px-5 text-2xl uppercase sm:text-4xl">About SINGULARANT</h1>
           <div class="mt-5 grid grid-cols-1 gap-5 border-t border-brand-50 p-5">
-            <p class="text-lg">
+            <p class="sm:text-lg">
               The project started with finding the Valorant-API, and wanting to
               do some brand design. After working on the logo, the whole project
               got put on the back burner. After a year, I found a new spark for
               starting to develop the site, which also came because I needed a
               project to learn Nuxt.js.
             </p>
-            <p class="text-lg">
+            <p class="sm:text-lg">
               I hope you will enjoy your journey on the website, together with
               all the great visuals from Valorant.
             </p>
-            <p class="text-lg italic">
+            <p class="italic sm:text-lg">
               If it has any interest to learn more about the project, or the
               person behind SINGULARANT, then checkout the links below.
             </p>
@@ -71,7 +73,7 @@
             </AButton>
           </div>
         </div>
-        <div class="relative col-span-2 bg-brand-500">
+        <div class="relative h-[200px] bg-brand-500 sm:col-span-2 sm:h-auto">
           <img
             class="absolute left-0 top-0 size-full object-cover"
             src="/media/Valorant_EP8_Teaser_Cypher_Reborn.jpg"
@@ -81,14 +83,16 @@
     </section>
     <section class="py-5">
       <InfinityBanner
-        ><p class="pr-16 text-4xl uppercase italic">
+        ><p class="pr-16 text-2xl uppercase italic sm:text-4xl">
           A bunch of images
         </p></InfinityBanner
       >
     </section>
     <section class="border-y border-brand-50 px-5">
-      <div class="grid grid-cols-2 gap-[1px] bg-brand-50 px-[1px]">
-        <img src="/media/E8a1_Cineposter_4x5_IG.jpg" class="row-span-2" />
+      <div
+        class="grid grid-cols-1 gap-[1px] bg-brand-50 px-[1px] sm:grid-cols-2"
+      >
+        <img src="/media/E8a1_Cineposter_4x5_IG.jpg" class="sm:row-span-2" />
         <img
           src="/media/LNY_Sage-3_NightMarket.jpg"
           class="size-full object-cover"

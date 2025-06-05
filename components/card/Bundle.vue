@@ -17,7 +17,7 @@
         </li>
       </ul>
     </div>
-    <div class="border-t border-brand-950 bg-brand-50 p-2">
+    <div class="flex-auto border-t border-brand-950 bg-brand-50 p-2">
       <p class="text-lg uppercase">{{ bundle.displayName }}</p>
     </div>
     <NuxtLink
@@ -38,6 +38,6 @@ defineProps({
 
 <style lang="postcss">
 :where(.c-card-bundle) {
-  @apply relative;
+  @apply relative flex flex-col;
 }
 </style>

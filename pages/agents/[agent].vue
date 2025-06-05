@@ -1,7 +1,7 @@
 <template>
   <div class="p-agent">
     <section
-      class="relative flex aspect-[16/9] max-h-[80vh] w-full items-center justify-center overflow-hidden border-b border-[currentColor]"
+      class="relative flex aspect-[1/2] max-h-[calc(100vh_-_195px)] w-full items-center justify-center overflow-hidden border-b border-[currentColor] lg:aspect-[16/9] lg:max-h-[80vh]"
       :style="{
         background: `linear-gradient(180deg, transparent, #${agent.backgroundGradientColors[0]} 20%, #${agent.backgroundGradientColors[1]} 60%)`,
       }"
@@ -14,7 +14,7 @@
       />
       <NuxtImg
         :src="agent.fullPortrait"
-        class="absolute left-[50%] top-[15%] h-full w-auto -translate-x-[50%]"
+        class="absolute left-0 top-[15%] h-full w-auto object-cover lg:left-[50%] lg:-translate-x-[50%]"
       />
       <div
         class="absolute bottom-0 h-[50%] w-full opacity-90"
@@ -28,9 +28,9 @@
     </section>
     <section class="px-5">
       <div
-        class="grid grid-cols-2 gap-[1px] border-l border-r border-[currentColor] bg-[currentColor]"
+        class="grid grid-cols-1 gap-[1px] border-l border-r border-[currentColor] bg-[currentColor] lg:grid-cols-2"
       >
-        <div class="flex items-start gap-3 bg-brand-50 p-5">
+        <div class="flex items-start gap-3 bg-brand-50 p-3 sm:p-5">
           <NuxtImg
             :src="agent.displayIcon"
             class="p-agent__profile-img"
@@ -39,12 +39,14 @@
             }"
           />
           <div class="flex-auto">
-            <p class="mb-1 text-lg">{{ agent.role.displayName }}</p>
-            <h1 class="text-5xl font-medium">{{ agent.displayName }}</h1>
+            <p class="mb-1 sm:text-lg">{{ agent.role.displayName }}</p>
+            <h1 class="break-all text-4xl font-medium sm:text-5xl">
+              {{ agent.displayName }}
+            </h1>
           </div>
         </div>
         <div class="bg-brand-50">
-          <div class="relative overflow-hidden p-5">
+          <div class="relative overflow-hidden p-3 sm:p-5">
             <Transition name="role-description">
               <div
                 v-if="showRoleDescription"
@@ -58,10 +60,12 @@
             </Transition>
             <p class="">{{ agent.description }}</p>
           </div>
-          <div class="flex gap-[1px] bg-[currentColor] pt-[1px]">
+          <div
+            class="flex flex-wrap gap-[1px] bg-[currentColor] pt-[1px] sm:flex-nowrap"
+          >
             <AButton
               @click="showRoleDescription = false"
-              class="c-a-button--inherit"
+              class="c-a-button--inherit flex-auto sm:flex-none"
               :class="{
                 active: !showRoleDescription,
               }"
@@ -70,7 +74,7 @@
             </AButton>
             <AButton
               @click="showRoleDescription = true"
-              class="c-a-button--inherit"
+              class="c-a-button--inherit flex-auto sm:flex-none"
               :class="{
                 active: showRoleDescription,
               }"
@@ -79,15 +83,15 @@
               {{ agent.role.displayName.match("^[aieouAIEOU].*") ? "an" : "a" }}
               {{ agent.role.displayName }}?
             </AButton>
-            <div class="flex-auto bg-brand-50" />
+            <div class="hidden flex-auto bg-brand-50 sm:block" />
           </div>
         </div>
       </div>
     </section>
-    <section class="">
-      <div class="-mb-[1px] border-y border-[currentColor] py-5">
+    <section>
+      <div class="-mb-[1px] border-y border-[currentColor] py-3 sm:py-5">
         <InfinityBanner
-          ><p class="pr-16 text-4xl uppercase italic">
+          ><p class="pr-16 text-2xl uppercase italic sm:text-4xl">
             Abilities
           </p></InfinityBanner
         >
@@ -102,7 +106,7 @@
               }"
             >
               <div
-                class="mt-[6px] flex aspect-square size-14 items-center justify-center p-2"
+                class="mt-[6px] flex aspect-square size-10 items-center justify-center p-2 sm:size-14"
                 :style="{
                   backgroundColor: `#${agent.backgroundGradientColors[2]}`,
                 }"
@@ -119,7 +123,7 @@
                 >
               </div>
               <p
-                class="text-lg"
+                class="sm:text-lg"
                 :class="{
                   'text-brand-50': swap,
                 }"
@@ -134,9 +138,11 @@
     <section class="px-5">
       <div class="border-l border-r border-[currentColor]">
         <div class="p-5">
-          <h3 class="text-4xl uppercase">Other agents</h3>
+          <h3 class="text-2xl uppercase sm:text-4xl">Other agents</h3>
         </div>
-        <div class="grid grid-cols-3 gap-[1px] bg-[currentColor] py-[1px]">
+        <div
+          class="grid grid-cols-1 gap-[1px] bg-[currentColor] py-[1px] sm:grid-cols-3"
+        >
           <CardAgent
             v-for="(agent, index) in adjacentAgents"
             :key="index"
@@ -198,11 +204,10 @@ watch(activeAbility, () => {
 <style lang="postcss">
 :where(.p-agent) {
   @apply bg-brand-50;
-}
 
-.p-agent__profile-img {
-  height: calc((1.125rem * 1.75) + 3rem * 0.75);
-  @apply mt-[6px] aspect-square w-auto;
+  & .p-agent__profile-img {
+    @apply mt-[6px] aspect-square h-[calc((1.125rem_*_1.75)_+_1.95rem_*_0.75)] w-auto sm:h-[calc((1.125rem_*_1.75)_+_3rem_*_0.75)];
+  }
 }
 
 /**

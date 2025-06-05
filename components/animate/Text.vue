@@ -12,21 +12,6 @@
       }}</span>
     </span>
   </span>
-
-  <!-- 
-    # Letter
-    Info: letters,  
-    Delay = 5 items / total delay
-
-    <span class="c-animate-text__letter" :style="{'--delay': 0}">
-      <span>
-        A
-      </span>
-      <span class="absolute top-0 -translate-x-full">
-        A (Hidden)
-      </span>
-    </span>
-    -->
 </template>
 
 <script setup>
@@ -47,7 +32,9 @@ const props = defineProps({
   @apply inline-block overflow-hidden;
 
   & .c-animate-text__letter {
-    @apply relative inline-block delay-[var(--delay,0ms)] duration-300 group-hover:translate-y-full;
+    @apply relative inline-block duration-300 group-hover:translate-y-full;
+    transition-delay: var(--delay, 0ms);
+    transition-property: transform;
   }
 }
 </style>

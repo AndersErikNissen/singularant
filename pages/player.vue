@@ -4,15 +4,15 @@
       <div
         class="flex items-stretch justify-between gap-3 border-l border-r border-brand-950"
       >
-        <h1 class="p-5 text-4xl uppercase">Player</h1>
+        <h1 class="p-5 text-2xl uppercase sm:text-4xl">Player</h1>
       </div>
       <div class="border-brand-950">
         <div class="flex w-full">
           <SearchField @change:query="query = $event" />
           <div
-            class="-ml-[1px] flex items-center border border-brand-950 bg-brand-50 p-5"
+            class="-ml-[1px] flex items-center border border-brand-950 bg-brand-50 p-3 sm:p-5"
           >
-            <p class="flex items-center gap-1">
+            <p class="flex items-center gap-1 text-sm sm:text-base">
               <span class="text-brand-500">
                 {{
                   activeItems === "cards"
@@ -26,7 +26,7 @@
         </div>
         <div class="flex gap-[1px] bg-brand-950 p-[1px] pt-0">
           <AButton
-            class="flex-[0_1_50%]"
+            class="flex-[0_1_50%] uppercase"
             @click="activeItems = 'cards'"
             :class="{
               active: activeItems === 'cards',
@@ -34,7 +34,7 @@
             >Cards</AButton
           >
           <AButton
-            class="flex-[0_1_50%]"
+            class="flex-[0_1_50%] uppercase"
             @click="activeItems = 'titles'"
             :class="{
               active: activeItems === 'titles',
@@ -46,10 +46,10 @@
     </section>
 
     <section class="px-5 pt-0">
-      <div class="border border-t-0 border-brand-950 p-5">
+      <div class="sm:border sm:border-t-0 sm:border-brand-950 sm:p-5">
         <ul
           v-show="activeItems === 'cards'"
-          class="grid flex-auto grid-cols-3 pl-[1px] md:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12"
+          class="grid flex-auto grid-cols-2 pl-[1px] md:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12"
         >
           <li
             v-for="(card, index) in computedCards"
@@ -73,7 +73,7 @@
 
         <ul
           v-show="activeItems === 'titles'"
-          class="grid flex-auto grid-cols-2 pl-[1px] md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8"
+          class="grid flex-auto grid-cols-1 pl-[1px] sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8"
         >
           <li
             v-for="(title, index) in computedTitles"
@@ -109,7 +109,7 @@
           <div class="flex h-full flex-col gap-[1px] bg-brand-950">
             <div
               v-if="modal.smallArt"
-              class="flex flex-auto items-center justify-center bg-brand-50 p-5"
+              class="flex items-center justify-center bg-brand-50 p-5"
             >
               <img
                 class="size-full max-w-[118px] object-contain"
@@ -118,7 +118,7 @@
             </div>
             <div
               v-if="modal.wideArt"
-              class="flex flex-auto items-center justify-center bg-brand-50 p-5"
+              class="flex items-center justify-center bg-brand-50 p-5"
             >
               <img
                 class="size-full max-w-[442px] object-contain"
@@ -129,10 +129,12 @@
               v-if="modal.largeArt"
               class="flex flex-auto items-center justify-center bg-brand-50 p-5"
             >
-              <img
-                class="size-full max-w-[258px] object-contain"
-                :src="modal.largeArt"
-              />
+              <div class="relative size-full max-w-[258px]">
+                <img
+                  class="absolute left-0 top-0 size-full object-contain"
+                  :src="modal.largeArt"
+                />
+              </div>
             </div>
           </div>
         </template>

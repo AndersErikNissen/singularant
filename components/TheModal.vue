@@ -11,12 +11,12 @@
           <div
             class="flex flex-shrink-0 items-center justify-between gap-5 border-b border-brand-950 p-5"
           >
-            <p class="text-2xl uppercase">
+            <p class="uppercase sm:text-2xl">
               <slot name="header" />
             </p>
             <button
               @click="closeModal"
-              class="flex size-10 flex-shrink-0 items-center justify-center border border-brand-950 bg-brand-50 duration-300 hover:border-brand-500 hover:bg-brand-500 hover:text-brand-50"
+              class="flex size-8 flex-shrink-0 items-center justify-center border border-brand-950 bg-brand-50 duration-300 hover:border-brand-500 hover:bg-brand-500 hover:text-brand-50 sm:size-10"
             >
               <AnIcon class="size-3" type="x" />
             </button>

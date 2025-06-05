@@ -4,8 +4,8 @@
       class="relative z-10 grid min-h-screen grid-cols-1 justify-center align-middle text-brand-50"
     >
       <div class="flex flex-col items-center justify-center gap-4">
-        <h1 class="text-7xl">Welcome to Singularant</h1>
-        <p class="text-lg">
+        <h1 class="text-2xl sm:text-7xl">Welcome to Singularant</h1>
+        <p class="text-center sm:text-xl">
           A small fun project build & designed by
           <NuxtLink class="underline underline-offset-2" to="https://aenders.dk"
             >AENDERS</NuxtLink

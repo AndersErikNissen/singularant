@@ -18,7 +18,7 @@
     <TransitionGroup
       name="items"
       tag="div"
-      class="relative -ml-[1px] flex-auto overflow-hidden border border-[currentColor]"
+      class="relative -mt-[1px] flex-auto overflow-hidden border border-[currentColor] sm:-ml-[1px] sm:mt-0"
     >
       <template
         v-for="(item, index) in items"
@@ -52,7 +52,7 @@ watch(activeItem, () => {
 
 <style lang="postcss">
 :where(.c-content-swapper) {
-  @apply flex;
+  @apply flex flex-col sm:flex-row;
 }
 
 .items-enter-active,
@@ -66,7 +66,7 @@ watch(activeItem, () => {
 
 .items-enter-from,
 .items-enter-to {
-  @apply z-10;
+  @apply relative z-10;
 }
 
 .items-leave-from,

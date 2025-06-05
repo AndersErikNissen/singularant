@@ -8,12 +8,13 @@
     <input
       @click="targetInput"
       @input="delayedInput"
+      id="query"
       v-model="query"
       class="c-search-bar__input"
       placeholder="Search..."
       ref="input"
     />
-    <button class="cursor-pointer p-5 opacity-0" @click="clearQuery">
+    <button class="cursor-pointer p-3 opacity-0 sm:p-5" @click="clearQuery">
       <AnIcon class="size-3 text-brand-50" type="x" />
     </button>
   </div>
@@ -64,7 +65,7 @@ function delayedInput() {
   }
 
   & .c-search-bar__input {
-    @apply w-full border-none bg-[transparent] p-5 text-brand-500 outline-none;
+    @apply w-full border-none bg-[transparent] p-3 text-brand-500 outline-none sm:p-5;
 
     &::placeholder {
       @apply text-brand-500;

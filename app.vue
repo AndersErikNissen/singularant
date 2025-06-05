@@ -32,9 +32,11 @@
     <Transition name="scroll-top">
       <div
         v-if="scrollTop"
-        class="fixed bottom-0 right-5 z-10 border border-brand-950 uppercase"
+        class="fixed bottom-0 right-5 z-10 border border-b-0 border-brand-950 uppercase"
       >
-        <AButton @click="scrolToTop">Scroll top</AButton>
+        <AButton @click="scrolToTop" class="text-sm sm:text-base"
+          >Scroll top</AButton
+        >
       </div>
     </Transition>
     <TheCurtain />
@@ -42,7 +44,7 @@
 </template>
 
 <script setup>
-const colors = useColors(null, "app");
+const colors = useColors();
 
 const trigger = ref();
 const isVisible = shallowRef(false);
@@ -90,11 +92,25 @@ useIntersectionObserver(
 <!-- 
   # To do:
 
-  # Menu
-  - ? Create hamburger menu ?
-  - ? Or make the current header work on mobile ?
+  # Mobile styling
+    # Components
+      - TheHeader
+      - TheFooter
+      - TheModal
+      - SearchField
+      - PageHeader
+      - ContentSwapper
 
-  # Mobile
-  - Styles all pages
+    # Pages
+      - /index
+      - /aboyt
+      - /player
+      - /ingame
+      - /ingame/bundles
+      - /ingame/bundles/[bundle]
+      - /agents
+      
+      - /agents/[agent]
+
 
 -->

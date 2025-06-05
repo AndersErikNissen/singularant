@@ -5,7 +5,9 @@
       <SearchField @change:query="query = $event" />
     </div>
     <section class="-mt-[1px] border-b border-brand-950 px-5">
-      <div class="grid grid-cols-2 pl-[1px] pt-[1px] 2xl:grid-cols-3">
+      <div
+        class="grid grid-cols-1 pl-[1px] pt-[1px] sm:grid-cols-2 2xl:grid-cols-3"
+      >
         <CardBundle
           v-for="(bundle, index) in computedBundles"
           :key="`p-bundles-bundle-${bundle.displayName}-${index}`"

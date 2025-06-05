@@ -120,11 +120,11 @@
 
 <style lang="postcss">
 :where(.c-the-footer) {
-  @apply sticky bottom-0 -mt-[1px] grid grid-cols-1 border-b border-t px-5;
+  @apply sticky bottom-0 -mt-[1px] grid grid-cols-1 border-t px-5;
   background-color: var(--color-bg, currentColor);
 
   & .menu-item {
-    @apply relative flex size-full flex-auto items-center justify-center overflow-hidden p-3;
+    @apply relative flex size-full flex-auto items-center justify-center overflow-hidden p-2 text-xs sm:p-3 sm:text-base;
 
     &::before {
       content: "";

@@ -8,7 +8,7 @@
       <div class="absolute bottom-0 left-0 w-full overflow-hidden">
         <div
           v-if="item.chromas?.length > 0"
-          class="flex translate-y-full flex-wrap duration-300 group-hover:translate-y-0"
+          class="flex flex-wrap duration-300 sm:translate-y-full sm:group-hover:translate-y-0"
         >
           <template
             v-for="(chroma, index) in item.chromas"

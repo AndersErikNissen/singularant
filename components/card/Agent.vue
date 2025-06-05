@@ -22,7 +22,7 @@
     />
     <div class="absolute bottom-5 left-0 z-10 w-full overflow-hidden">
       <div
-        class="flex translate-y-full items-center justify-between px-5 group-hover:translate-y-0 group-hover:duration-300"
+        class="flex items-center justify-between px-5 sm:translate-y-full lg:group-hover:translate-y-0 lg:group-hover:duration-300"
       >
         <p class="text-3xl uppercase text-brand-50">
           {{ agent.displayName }}

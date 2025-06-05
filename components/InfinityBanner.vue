@@ -1,6 +1,12 @@
 <template>
   <div class="c-infinity-banner" ref="component">
-    <div v-if="!ready" class="inline-block" ref="placeholder">
+    <div
+      class="inline-block opacity-0"
+      ref="placeholder"
+      :class="{
+        absolute: ready,
+      }"
+    >
       <slot />
     </div>
 
@@ -30,32 +36,37 @@ const props = defineProps({
   },
 });
 
+const component = useTemplateRef("component");
+const placeholder = useTemplateRef("placeholder");
 const ready = ref(false);
-const component = ref();
-const placeholder = ref();
 const duration = ref(props.duration);
 const itemCount = ref(0);
 
 function init() {
   if (ready.value) ready.value = false;
+
   const placeholderWidth = placeholder.value.getBoundingClientRect().width;
   const componentWidth = component.value.getBoundingClientRect().width;
-  itemCount.value = Math.ceil(componentWidth / placeholderWidth);
+
+  itemCount.value = Math.ceil(componentWidth / placeholderWidth) + 1;
+
+  duration.value = props.duration;
   duration.value =
-    duration.value * (componentWidth / (placeholderWidth * itemCount.value)); // Adjust duration since the content will be wider than the component
+    duration.value / (componentWidth / (placeholderWidth * itemCount.value)); // Adjust duration since the content will be wider than the component
+
   ready.value = true;
 }
 
 onMounted(() => {
   init();
 
-  window.addEventListener("resize", init);
+  window.addEventListener("resize", () => init());
 });
 </script>
 
 <style lang="postcss">
 :where(.c-infinity-banner) {
-  @apply flex overflow-hidden;
+  @apply relative flex overflow-hidden;
 }
 :where(.c-infinity-banner__content) {
   @apply flex flex-shrink-0;

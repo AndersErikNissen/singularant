@@ -15,13 +15,13 @@
       :key="`bundle-items-section-${index}-${item.displayName}`"
       class="-mb-[1px] border-t border-brand-950"
     >
-      <InfinityBanner class="border-b border-brand-950 py-5"
-        ><span class="pr-16 text-2xl uppercase italic">{{
+      <InfinityBanner class="border-b border-brand-950 py-3 sm:py-5"
+        ><span class="pr-16 text-xl uppercase italic sm:text-2xl">{{
           item.displayName.slice(0, -1) + "(s)"
         }}</span></InfinityBanner
       >
       <div class="px-5">
-        <div class="grid grid-cols-4 pl-[1px]">
+        <div class="grid grid-cols-1 pl-[1px] sm:grid-cols-2 lg:grid-cols-4">
           <CardIngame
             v-for="(childItem, index) in item.items"
             :key="`${childItem.uuid}-${index}`"
@@ -43,14 +43,14 @@
       </div>
     </section>
 
-    <InfinityBanner class="-mb-[1px] border-y border-brand-950 py-5"
-      ><span class="pr-16 text-2xl uppercase italic"
+    <InfinityBanner class="-mb-[1px] border-y border-brand-950 py-3 sm:py-5"
+      ><span class="pr-16 text-xl uppercase italic sm:text-2xl"
         >Other bundles</span
       ></InfinityBanner
     >
 
     <section class="border-t border-brand-950 px-5">
-      <div class="-my-[1px] grid grid-cols-2 pl-[1px] pt-[1px]">
+      <div class="-my-[1px] grid grid-cols-1 pl-[1px] pt-[1px] sm:grid-cols-2">
         <CardBundle
           v-for="(otherBundle, index) in otherBundles"
           :key="`otherBundle-${otherBundle.displayName}-${index}`"
@@ -87,7 +87,7 @@ onMounted(() => {
   @apply border-y border-brand-950 bg-brand-50;
 
   & .p-bundle__banner {
-    @apply relative -mb-[1px] aspect-[16/6] bg-brand-950 p-[1px];
+    @apply relative -mb-[1px] aspect-[4/3] bg-brand-950 p-[1px] sm:aspect-[16/6];
 
     &::before,
     &::after {

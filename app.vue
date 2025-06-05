@@ -44,6 +44,7 @@
 </template>
 
 <script setup>
+useHead({ titleTemplate: "%s - SINGULARANT" });
 const colors = useColors();
 
 const trigger = ref();
@@ -88,29 +89,3 @@ useIntersectionObserver(
   @apply transition-transform duration-300;
 }
 </style>
-
-<!-- 
-  # To do:
-
-  # Mobile styling
-    # Components
-      - TheHeader
-      - TheFooter
-      - TheModal
-      - SearchField
-      - PageHeader
-      - ContentSwapper
-
-    # Pages
-      - /index
-      - /aboyt
-      - /player
-      - /ingame
-      - /ingame/bundles
-      - /ingame/bundles/[bundle]
-      - /agents
-      
-      - /agents/[agent]
-
-
--->

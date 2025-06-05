@@ -20,6 +20,9 @@
 </template>
 
 <script setup>
+useHead({
+  title: "BUNDLES",
+});
 useColors();
 
 const { data: ingame } = await useFetch("/api/ingame");

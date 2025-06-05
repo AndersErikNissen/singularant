@@ -144,6 +144,9 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Player",
+});
 useColors();
 
 const { data: player } = await useFetch("/api/player");

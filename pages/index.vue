@@ -29,5 +29,8 @@
 </template>
 
 <script setup>
+useHead({
+  title: "HOME",
+});
 useColors({ header: { color: 50, bg: "transparent" } });
 </script>

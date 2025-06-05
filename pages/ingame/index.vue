@@ -154,6 +154,9 @@
 </template>
 
 <script setup>
+useHead({
+  title: "IN-GAME",
+});
 useColors();
 
 const scroller = ref(null);

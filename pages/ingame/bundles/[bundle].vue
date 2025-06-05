@@ -76,6 +76,10 @@ const otherBundles = useState("otherBundles", () =>
   useRandomArray(ingame.value.bundles, 4, [bundleIndex]),
 );
 
+useHead({
+  title: bundle.displayName.toUpperCase() + " BUNDLE",
+});
+
 // Change bundles on route change
 onMounted(() => {
   otherBundles.value = useRandomArray(ingame.value.bundles, 4, [bundleIndex]);

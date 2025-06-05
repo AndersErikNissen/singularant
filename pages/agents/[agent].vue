@@ -164,6 +164,10 @@ const agentIndex = agents.value.findIndex(
 );
 const agent = agents.value[agentIndex];
 
+useHead({
+  title: "THE AGENT " + agent.displayName.toUpperCase(),
+});
+
 useColors({
   header: {
     color: "#" + agent.backgroundGradientColors[1],

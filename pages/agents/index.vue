@@ -19,6 +19,9 @@
 </template>
 
 <script setup>
+useHead({
+  title: "AGENTS",
+});
 useColors();
 const { data: agents } = await useFetch("/api/agents");
 </script>

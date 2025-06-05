@@ -123,6 +123,9 @@
 </template>
 
 <script setup>
+useHead({
+  title: "ABOUT",
+});
 useColors();
 </script>
 

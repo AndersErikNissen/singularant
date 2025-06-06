@@ -6,8 +6,8 @@ The design ended up being based on the logo itself, and the idea of trying out a
 The design took shame as I went along, but I could just as easily have made a Figma design file - but the purpose was to learn Nuxt, so that is why Figma was skipped.
 
 ### The code
-I also ended up being a great project for me to start learning Nuxt 3.
-Prior I only had some experience with Vue 2, from back in the day (2021), so it was fun learning all the improvements that have happened since.
+It also ended up being a great project for me to start learning Nuxt 3.
+Prior I only had experience with Vue 2, from back in the day (2021), so it was fun to discover all the changes that has happend since then.
 
 **I hope you will take a look at the website, and that you enjoy your stay.**
 
